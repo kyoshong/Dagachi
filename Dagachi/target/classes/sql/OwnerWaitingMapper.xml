@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ownerWaiting">
+
+	<select id="all" resultType="dto.OwnerWaitingDto"
+		parameterType="dto.OwnerWaitingDto">
+		select * from Owner_Waiting
+	</select>
+	<insert id="insert" parameterType="dto.OwnerWaitingDto">
+		insert into Owner_Waiting
+		values(#{restaurant_Num},#{owner_name},#{owner_email},
+		#{owner_password},#{owner_phonenumber},#{restaurant_Address},
+		#{owner_SecurityNum},#{restaurant_Name})
+	</insert>
+
+	<delete id="del" parameterType="dto.OwnerWaitingDto">
+		delete from Owner_Waiting where restaurant_Num=#{restaurant_Num}
+	</delete>
+
+</mapper>
