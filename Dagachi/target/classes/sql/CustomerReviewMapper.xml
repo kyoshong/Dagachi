@@ -20,15 +20,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where customer_num = #{customer_num}
 	</update>  
 	
-	<select id="one" parameterType="dto.ReviewDto" 
-	resultType="dto.ReviewDto">
+	<select id="customerOne" parameterType="dto.ReviewDto" 	resultType="int">
 	select * from Review where customer_num = #{customer_num}
 	</select>
 	
+	<select id="list" resultType="dto.ReviewDto" parameterType="map">
+	select * from Review order by ref desc review_date limit #{start},#{per}
+	</select>
+	<select id="one" parameterType="dto.ReviewDto" 	resultType="int">
+	select * from Review where review_Num = #{review_Num}
+	</select>
 	
-	<delete id="del" parameterType="dto.ReviewDto">
-	delete from Review where customer_num = #{customer_num}
+	
+		<select id="ownerOne" parameterType="dto.ReviewDto" 
+	resultType="int">
+	select * from Review where owner_num = #{owner_num}
+	</select>
+	
+	
+	<delete id="delete" parameterType="int">
+	delete from Review where review_Num = #{review_Num}
 	</delete>
 	
-	
+		<select id="count" resultType="int">
+		select count(*) from Review
+	</select>
 </mapper>

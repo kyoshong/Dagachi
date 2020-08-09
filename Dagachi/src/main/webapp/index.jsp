@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="admin/list">list</a>
 
 </body>
 </html>

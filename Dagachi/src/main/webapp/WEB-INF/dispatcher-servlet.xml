@@ -8,131 +8,16 @@
       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<mvc:annotation-driven>
-		<mvc:message-converters>
-			<bean
-				class="org.springframework.http.converter.StringHttpMessageConverter">
-				<property name="supportedMediaTypes">
-					<list>
-						<value>text/html;charset=UTF-8</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven> <!-- ajax 한글 깨지는 거 방지 -->
-	<bean
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
-		id="localeResolver" />
-<!-- 
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/event/list.do" /><"/**" 모든 요청에 다 
-				하겠다.
-			<bean class="spring.interceptor.EventExpirationCheckInterceptor" />
-		</mvc:interceptor>
+	<mvc:annotation-driven />
 
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean
-				class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
-				p:paramName="language" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+<!-- 	<<mvc:resources mapping="/resources/**" location="/resources/" /> -->
+	<context:component-scan base-package="board.*"/>
+	
 
 	<context:component-scan
-		base-package="dao.*,service.*,controller.*" />
-
-	<!-- <bean id="bookDao" class="view.service.PageRank" p:sqlSessionFactory-ref="sqlSessionFactory" 
-		/> -->
-	<!-- <bean id="helloController" class="spring.controller.HelloController"/> -->
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>message.validation</value>
-				<value>message.label</value>
-				<value>message.validation_en</value>
-				<value>message.label_en</value>
-			</list>
-		</property>
-	</bean>
-	
-<bean id="mailSender"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-    <property name="host" value="smtp.gmail.com" />
-    <property name="port" value="587" /><!-- 465 or 25 -->
-    <property name="username" value="" /><!-- 본인 이메일 계정 -->
-    <property name="password" value="" /><!-- 해당 계정의 비밀번호 -->
-    <property name="defaultEncoding" value="utf-8" />
-    <property name="javaMailProperties"> 
-        <props>
-            <prop key="mail.transport.protocol">smtp</prop>
-            <prop key="mail.smtp.auth">true</prop>
-            <prop key="mail.smtp.starttls.enable">true</prop>
-            <prop key="mail.debug">true</prop>
-        </props>
-    </property>
-</bean>
-	
-
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-
-	
-	<bean
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="exceptionMappings">
-			<props>
-
-				<prop key="java.lang.ArithmeticException">
-					error/mathException
-				</prop>
-				<prop key="java.lang.Exception">
-					error/exception
-				</prop>
-			</props>
-		</property>
-	</bean>
-
-	<bean id="pageXmlReport"
-		class="org.springframework.web.servlet.view.xml.MarshallingView">
-		<property name="marshaller" ref="marshaller" />
-		<property name="modelKey" value="report" />
-	</bean>
-
-	<bean id="marshaller"
-		class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-		<property name="classesToBeBound">
-			<list>
-				<value>controller.PageRankReport</value>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="tilesviewResolver"
-		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+		base-package="dao.*, service.*, controller.*" />
 		
-	<bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/tiles_def/tilesdef.xml</value>
-			</list>
-		</property>
 		
-		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
-	</bean>
-	
-	
-<bean
-		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"
-		id="pageJsonReport" />
-
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  <!-- 파일 타입파라미터는 임시저장소 ㄱㄱ -->
-	</bean>
-	<bean id="viewResolver1"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver"></bean>
 
 	<bean id="viewResolver2"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
