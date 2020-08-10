@@ -22,16 +22,29 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/dispatcher-servlet.xml
+<<<<<<< HEAD
 						/WEB-INF/mybatis.xml
 			</param-value>
+=======
+             /WEB-INF/mybatis.xml</param-value>
+>>>>>>> 8caa3aec4ba5783808e12387ecd881b938ba15c1
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
+<<<<<<< HEAD
 		<url-pattern>/admin/*</url-pattern>
 	
+=======
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>/customer/*</url-pattern>
+		<url-pattern>/admin/*</url-pattern>
+		<url-pattern>/owner/*</url-pattern>
+>>>>>>> 8caa3aec4ba5783808e12387ecd881b938ba15c1
 	</servlet-mapping>
+
+	
 
 </web-app>
