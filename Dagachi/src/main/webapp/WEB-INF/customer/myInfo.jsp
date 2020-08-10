@@ -16,7 +16,7 @@
 			document.info.newPassword2.focus();
 			return false;
 		}else
-			alert("회원탈퇴 완료되었습니다.")
+			alert("비밀번호 변경이 완료되었습니다.")
 			return true;
 	}
 </script>
