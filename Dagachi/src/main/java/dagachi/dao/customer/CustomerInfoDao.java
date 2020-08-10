@@ -21,11 +21,11 @@ public class CustomerInfoDao extends SqlSessionDaoSupport{
 		return getSqlSession().insert("customerInfo.insert",dto);
 	}
 	
-	public int update(CustomerInfoDto dto) {
+	public int update(String dto) {
 		return getSqlSession().update("customerInfo.update",dto);
 	}	
-	public int del(int num) {
-		return getSqlSession().delete("customerInfo.del",num);
+	public void del(int num) {
+		getSqlSession().delete("customerInfo.del",num);
 	}
 	public CustomerInfoDto one(int p) {
 		return getSqlSession().selectOne("customerInfo.one",p);

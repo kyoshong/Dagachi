@@ -15,12 +15,15 @@
 			alert("비밀번호가 다릅니다.");
 			document.info.newPassword2.focus();
 			return false;
-		}
+		}else
+			alert("회원탈퇴 완료되었습니다.")
+			return true;
 	}
 </script>
 </head>
-<body>내 정보 수정 
-	<form method="post" name="info" onsubmit="return infoSave()">
+<body>
+<center><b>내정보 수정</b>
+	<form method="post" name="info" action="list" onsubmit="return infoSave()" >
 		<label>이름</label> 
 		<input type="text" name="customer_name"
 			value="${info.customer_name}" /><br /> 
@@ -42,10 +45,10 @@
 		<label>휴대폰번호 인증</label> 
 		<input type="text" name="customer_phoneNumber"	value="${info.customer_phoneNumber}" /><br /> 
 		<label>인증번호</label> 
-		<input type="text" name="customer_name" value="" /><br />
+		<input type="text" name="phoneNumberCode" value="" /><br />
 
 		<button type="submit">수정</button>
-		<input type="button" name="delete" value="회원 탈퇴">
-	</form>
+<input type="button" value="회원탈퇴"
+       onclick="document.location.href='deleteForm?num=${info.customer_num}'">	</form>
 </body>
 </html>

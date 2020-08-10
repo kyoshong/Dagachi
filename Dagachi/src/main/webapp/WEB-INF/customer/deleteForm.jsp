@@ -21,8 +21,9 @@ return false;
 <body>
 <center><b>글삭제</b>
 <br>
-<form method="POST" name="delForm" action="list" onsubmit="return deleteSave()">
-   <input type="hidden" name="_method" value="delete" />
+<form method="POST" name="delForm" action="delete" onsubmit="return deleteSave()">
+  
+   
 <table border="1" align="center" cellspacing="0" cellpadding="0" width="360">
   <tr height="30">
      <td align=center  >
@@ -31,15 +32,13 @@ return false;
   <tr height="30">
      <td align=center >비밀번호 :  
        <input type="password" name="passwd" size="8" maxlength="12">
-   <input type="hidden" name="num" value="${num}">
-   <input type="hidden" name="p" value="${pageNum}"></td>
-   
+
 </tr>
 <tr height="30">
     <td align=center >
-      <input type="submit" value="글삭제" >
-      <input type="button" value="글목록"
-       onclick="document.location.href='list?p=${pageNum}'">    
+      <input type="submit" value="회원탈퇴" >
+      <input type="button" value="뒤로가기"
+       onclick="document.location.href='myInfo'">    
    </td>
 </tr> 
 </table>

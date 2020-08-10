@@ -2,6 +2,8 @@ package dagachi.controller.customer;
 
 
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,9 +38,9 @@ public class CustomerInfoController {
 
 	//회원 정보 수정 완료 창
 	@RequestMapping(value = "/myInfo", method = RequestMethod.POST)
-	public String updateMyinfo(Model model, CustomerInfoDto info) throws Exception {
+	public String updateMyinfo(Model m, String info) throws Exception {
 		int a = service.update(info);
-	  model.addAttribute("update", a);
+		m.addAttribute("num", a);
 	 
 	 return "redirect:myInfo";
 	}
@@ -49,22 +51,21 @@ public class CustomerInfoController {
 	 * 
 	 * }
 	 */
+	//회원 탈퇴
 	@GetMapping("/deleteForm")
-	public String deleteForm(int num, int p, Model m) {
+	public String deleteForm(int num, Model m) {
 		m.addAttribute("num", num);
-		m.addAttribute("pageNum", p);
-		
-		return "deleteForm";
+		return "customer/deleteForm";
 	}	
 	
-	@DeleteMapping("/list")
-	public String delete(int num, String passwd, int p) {
+	@PostMapping("/delete")
+	public String delete(int num, String passwd) {
 		try {
 			service.delete(num,passwd);
 		} catch (PasswordCheckException e) {
-			return "redirect:/customer/error";
+			return "customer/error";
 		}
-		return "redirect:/customer/myInfo";
+		return "customer/myInfo";
 	}
 	
 	@GetMapping("/error")

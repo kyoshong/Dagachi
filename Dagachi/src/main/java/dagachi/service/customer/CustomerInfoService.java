@@ -33,12 +33,12 @@ public class CustomerInfoService {
 		return dao.one(p);
 	}
 
-	public int update(CustomerInfoDto one) throws Exception {
+	public int update(String one) throws Exception {
 		return dao.update(one);
 	}
 
-	public int delete(int one) throws Exception {
-		return dao.del(one);
+	public void delete(int one) throws Exception {
+		dao.del(one);
 	}
 
 	public void delete(int num, String password)  throws PasswordCheckException{

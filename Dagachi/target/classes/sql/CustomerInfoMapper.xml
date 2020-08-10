@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select customer_password from board where customer_num = #{customer_num}
 	</select>
 	
-	<delete id="del" parameterType="dagachi.dto.CustomerInfoDto">
+	<delete id="del" parameterType="int">
 	delete from customer_SignUp where customer_num = #{customer_num}
 	</delete>
 	
