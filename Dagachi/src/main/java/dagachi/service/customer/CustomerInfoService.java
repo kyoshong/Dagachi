@@ -16,21 +16,19 @@ public class CustomerInfoService {
 	@Autowired
 	private CustomerInfoDao dao;
 
-	public int add() throws Exception {
-		Date now = new Date(System.currentTimeMillis());
-		CustomerInfoDto d = new CustomerInfoDto();
-		d.setCustomer_birth(now);
-		d.setCustomer_email("qkrgytjd0827@naver.com");
-		d.setCustomer_gender("1");
-		d.setCustomer_Join_Date(now);
-		d.setCustomer_password("phs0827");
-		d.setCustomer_phoneNumber("010821851631");
-		d.setCustomer_name("qkrgy");
-
-		return dao.add(d);
-
-	}
-
+	
+	  public int add() throws Exception { 
+		  Date now = new
+	  Date(System.currentTimeMillis()); CustomerInfoDto d = new CustomerInfoDto();
+	  d.setCustomer_birth(now); d.setCustomer_email("qkrgytjd0827@naver.com");
+	  d.setCustomer_gender("1"); d.setCustomer_Join_Date(now);
+	  d.setCustomer_password("phs0827"); d.setCustomer_phoneNumber("010821851631");
+	  d.setCustomer_name("qkrgy");
+	  
+	  return dao.add(d);
+	  
+	  }
+	 
 	public CustomerInfoDto one(int p) throws Exception {
 		return dao.one(p);
 	}
@@ -39,8 +37,18 @@ public class CustomerInfoService {
 		return dao.update(one);
 	}
 
-	public int delete(CustomerInfoDto one) throws Exception {
+	public int delete(int one) throws Exception {
 		return dao.del(one);
 	}
 
+	public void delete(int num, String password)  throws PasswordCheckException{
+		String db_password = dao.password(num);
+		if(db_password.equals(password)){
+			dao.del(num);
+		}else {
+			throw new PasswordCheckException("패스워드 틀림");
+		}
+		
+		
+	}
 }

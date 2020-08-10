@@ -11,7 +11,7 @@
 
 <script language="JavaScript">
 	function infoSave() {
-		if (document.info.newPassword.value == document.info.newPassword.newPassword2) {
+		if (document.info.newPassword.value != document.info.newPassword2.value) {
 			alert("비밀번호가 다릅니다.");
 			document.info.newPassword2.focus();
 			return false;
@@ -19,7 +19,7 @@
 	}
 </script>
 </head>
-<body>
+<body>내 정보 수정 
 	<form method="post" name="info" onsubmit="return infoSave()">
 		<label>이름</label> 
 		<input type="text" name="customer_name"
@@ -33,20 +33,19 @@
 		<input type="password" name="newPassword" /><br /> 
 		
 		<label>변경비밀번호	확인</label> 
-		<input type="text" name="newPassword2" /><br /> 
+		<input type="password" name="newPassword2" /><br /> 
 		
 		<label>생년월일</label>
 		<input type="text" name="customer_birth"value="<fmt:formatDate 
 		value="${info.customer_birth}" pattern="yyyy.MM.dd"/>" /><br />
 
-
 		<label>휴대폰번호 인증</label> 
 		<input type="text" name="customer_phoneNumber"	value="${info.customer_phoneNumber}" /><br /> 
 		<label>인증번호</label> 
-		<input type="text" name="customer_name" value="${info.customer_name}" /><br />
+		<input type="text" name="customer_name" value="" /><br />
 
 		<button type="submit">수정</button>
-		<input type="button" value="회원 탈퇴">
+		<input type="button" name="delete" value="회원 탈퇴">
 	</form>
 </body>
 </html>

@@ -12,6 +12,9 @@ import dagachi.dto.CustomerInfoDto;
 
 public class CustomerInfoDao extends SqlSessionDaoSupport{
 	
+	public String password(int num) {
+		return getSqlSession().selectOne("customerInfo.password",num);
+	}
 
 	
 	public int add(CustomerInfoDto dto){
@@ -21,8 +24,8 @@ public class CustomerInfoDao extends SqlSessionDaoSupport{
 	public int update(CustomerInfoDto dto) {
 		return getSqlSession().update("customerInfo.update",dto);
 	}	
-	public int del(CustomerInfoDto dto) {
-		return getSqlSession().delete("customerInfo.del",dto);
+	public int del(int num) {
+		return getSqlSession().delete("customerInfo.del",num);
 	}
 	public CustomerInfoDto one(int p) {
 		return getSqlSession().selectOne("customerInfo.one",p);

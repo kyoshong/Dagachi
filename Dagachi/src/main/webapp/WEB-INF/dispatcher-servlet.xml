@@ -50,7 +50,7 @@
 	 class="dagachi.dao.customer.CustomerOrderDao" 
 	 p:sqlSessionFactory-ref="sqlSessionFactory" 
 		/> 
-			 CustomerOrderDao
+			
 		 <bean class="dagachi.dao.admin.AdminReviewDao" 
 id="adminReview" p:sqlSessionFactory-ref="sqlSessionFactory" />
 	

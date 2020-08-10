@@ -7,8 +7,10 @@
 </head>
 <body>
 <a href="customer/myInfo">내정보 수정</a>
+
 <a href="admin/list">Admin's Review list</a>
+
 
 <input type="button" value="글 작성" onClick="location.href='customer/write'"/>
 </body>
-</html>
+</html>  
