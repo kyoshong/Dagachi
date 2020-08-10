@@ -6,19 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="customerHeart">
 
 	
-	<insert id="insert" parameterType="dto.CustomerHeartDto">
+	<insert id="insert" parameterType="dagachi.dto.CustomerHeartDto">
 		insert into Heart_List values(#{Customer_num},#{Owner_num},#{Restaurant_Name},
 		#{Restaurant_Pic})
 	</insert>
 	
 
-	<select id="one" parameterType="dto.CustomerHeartDto" 
+	<select id="one" parameterType="dagachi.dto.CustomerHeartDto" 
 	resultType="dto.CustomerHeartDto">
 	select * from Heart_List where customer_num = #{customer_num}
 	</select>
 	
 	
-	<delete id="del" parameterType="dto.CustomerHeartDto">
+	<delete id="del" parameterType="dagachi.dto.CustomerHeartDto">
 	delete * from Heart_List where customer_num = #{customer_num}
 	</delete>
 

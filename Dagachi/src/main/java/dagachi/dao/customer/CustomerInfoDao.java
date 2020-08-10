@@ -1,11 +1,12 @@
-package dao.customer;
+package dagachi.dao.customer;
+
 
 
 
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import dto.CustomerInfoDto;
+import dagachi.dto.CustomerInfoDto;
 
 
 
@@ -23,8 +24,8 @@ public class CustomerInfoDao extends SqlSessionDaoSupport{
 	public int del(CustomerInfoDto dto) {
 		return getSqlSession().delete("customerInfo.del",dto);
 	}
-	public int one(CustomerInfoDto dto) {
-		return getSqlSession().selectOne("customerInfo.one",dto);
+	public CustomerInfoDto one(int p) {
+		return getSqlSession().selectOne("customerInfo.one",p);
 	}
 	
 }

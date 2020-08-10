@@ -1,7 +1,7 @@
-package dao.customer;
+package dagachi.dao.customer;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import dto.CustomerInfoDto;
+import dagachi.dto.CustomerInfoDto;
 
 
 

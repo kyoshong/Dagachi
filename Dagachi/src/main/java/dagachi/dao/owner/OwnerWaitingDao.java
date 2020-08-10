@@ -1,4 +1,4 @@
-package dao.owner;
+package dagachi.dao.owner;
 
 public class OwnerWaitingDao {
 

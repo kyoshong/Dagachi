@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="customerOrder">
 
 	
-	<insert id="insert" parameterType="dto.CustomerOrderDto">
+	<insert id="insert" parameterType="dagachi.dto.CustomerOrderDto">
 		insert into Customer_Order(Customer_num,Date_of_use,Restaurant_Name,
 		Number_of_people,Customer_phoneNumber,Reserv_Fee,Reserv_Confirm,Owner_num)
 		values(#{Customer_num},#{Date_of_use},#{Restaurant_Name},
@@ -14,20 +14,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<select id=""></select>
 	
-	<update id="update" parameterType="dto.CustomerOrderDto">
+	<update id="update" parameterType="dagachi.dto.CustomerOrderDto">
 		update Customer_Order set Date_of_use =
 		 #{Date_of_use}, Number_of_people = #{Number_of_people}, 
 		 Customer_phoneNumber = #{Customer_phoneNumber},
 		 where customer_num = #{customer_num}
 	</update>  
 	
-	<select id="one" parameterType="dto.CustomerOrderDto" 
-	resultType="dto.CustomerOrderDto">
+	<select id="one" parameterType="dagachi.dto.CustomerOrderDto" 
+	resultType="dagachi.dto.CustomerOrderDto">
 	select * from Customer_Order natural join Restaurant_info where customer_num = #{customer_num}
 	</select>
 	
 	
-	<delete id="del" parameterType="dto.CustomerOrderDto">
+	<delete id="del" parameterType="dagachi.dto.CustomerOrderDto">
 	delete from Customer_Order where customer_num = #{customer_num}
 	</delete>
 	

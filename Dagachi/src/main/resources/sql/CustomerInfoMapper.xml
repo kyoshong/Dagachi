@@ -6,25 +6,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="customerInfo">
 
 	
-	<insert id="insert" parameterType="dto.CustomerInfoDto">
+	<insert id="insert" parameterType="dagachi.dto.CustomerInfoDto">
 		insert into customer_SignUp(customer_email,customer_name,customer_password,
 		customer_gender,customer_phoneNumber,customer_birth,customer_Join_Date)
 		values(#{customer_email},#{customer_name},#{customer_password},
 		#{customer_gender},#{customer_phoneNumber},#{customer_birth},#{customer_Join_Date})
 	</insert>
 	
-	<update id="update" parameterType="dto.CustomerInfoDto">
+	<update id="update" parameterType="dagachi.dto.CustomerInfoDto">
 		update customer_SignUp set customer_password =
 		 #{customer_password} where customer_num = #{customer_num}
 	</update>
 	
-	<select id="one" parameterType="dto.CustomerInfoDto" 
-	resultType="dto.CustomerInfoDto">
-	select * from customer_SignUp where customer_num = #{customer_num}
+	<select id="one" parameterType="dagachi.dto.CustomerInfoDto" 
+	resultType="dagachi.dto.CustomerInfoDto">
+	select * from customer_SignUp where customer_num = 	1
 	</select>
 	
 	
-	<delete id="del" parameterType="dto.CustomerInfoDto">
+	<delete id="del" parameterType="dagachi.dto.CustomerInfoDto">
 	delete from customer_SignUp where customer_num = #{customer_num}
 	</delete>
 	

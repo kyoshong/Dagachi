@@ -1,4 +1,4 @@
-package dto;
+package dagachi.dto;
 
 import java.util.Date;
 
