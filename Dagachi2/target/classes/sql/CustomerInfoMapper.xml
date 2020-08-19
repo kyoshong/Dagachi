@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customerInfo">
+
+	<insert id="insert" parameterType="dagachi.dto.CustomerInfoDto">
+		insert into
+		customer_SignUp(customer_email,customer_name,customer_password,
+		customer_gender,customer_phoneNumber,customer_birth,customer_Join_Date)
+		values(#{customer_email},#{customer_name},#{customer_password},
+		#{customer_gender},#{customer_phoneNumber},#{customer_birth},#{customer_Join_Date})
+	</insert>
+
+	<update id="update" parameterType="hashMap">
+		update customer_SignUp set
+		customer_password =
+		#{customer_password} where customer_num =
+		#{customer_num}
+	</update>
+
+	<select id="one" parameterType="int"
+		resultType="dagachi.dto.CustomerInfoDto">
+		select * from customer_SignUp where customer_num =
+		#{customer_num}
+	</select>
+
+	<select id="search" parameterType="hashMap"
+		resultType="dagachi.dto.CustomerInfoDto">
+		select * from customer_SignUp
+		<if test='searchType.equals("customer_name")'>
+			where customer_name like concat('%',#{keyword},'%')
+		</if>
+		<if test='searchType.equals("customer_phoneNumber")'>
+			WHERE customer_phoneNumber LIKE
+			concat('%',#{keyword},'%')
+		</if>
+		<if test='searchType.equals("customer_email")'>
+			WHERE customer_email LIKE
+			concat('%',#{keyword},'%')
+		</if>
+		<if test='searchType.equals("customer_num")'>
+			WHERE customer_num =#{keyword}
+		</if>
+		limit #{start},#{per};
+	</select>
+	
+<select id="searchCount" parameterType="hashMap" resultType="int">
+		select count(*) from customer_SignUp
+		<if test='searchType.equals("customer_name")'>
+			where customer_name like concat('%',#{keyword},'%')
+		</if>
+		<if test='searchType.equals("customer_phoneNumber")'>
+			WHERE customer_phoneNumber LIKE
+			concat('%',#{keyword},'%')
+		</if>
+		<if test='searchType.equals("customer_email")'>
+			WHERE customer_email LIKE
+			concat('%',#{keyword},'%')
+		</if> 
+		<if test='searchType eq "customer_num"'>
+			WHERE customer_num = #{keyword}
+		 </if>
+		
+	</select>
+	<select id="password" parameterType="int" resultType="String">
+		select
+		Customer_password from customer_SignUp where customer_num =
+		#{customer_num}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from customer_SignUp
+		where customer_num = #{customer_num}
+	</delete>
+
+	<select id="list" resultType="dagachi.dto.CustomerInfoDto"
+		parameterType="map">
+		select * from customer_SignUp limit #{start},#{per}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from
+		customer_SignUp
+	</select>
+
+</mapper>

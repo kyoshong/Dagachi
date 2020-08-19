@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven> <!-- ajax 한글 깨지는 거 방지 -->
+		<mvc:resources mapping="/*/resources/**" location="/resources/" />
+	
+<!-- 	<bean
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
+		id="localeResolver" /> -->
+
+<!-- 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/event/list.do" /><"/**" 모든 요청에 다 
+				하겠다.
+			<bean class="spring.interceptor.EventExpirationCheckInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean
+				class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+				p:paramName="language" />
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+
+	<context:component-scan
+		base-package="dagachi.*" />
+
+	 <bean id="CustomerInfoDao" 
+	 class="dagachi.dao.customer.CustomerInfoDao" 
+	 p:sqlSessionFactory-ref="sqlSessionFactory" 
+		/> 
+		 <bean id="CustomerOrderDao" 
+	 class="dagachi.dao.customer.CustomerOrderDao" 
+	 p:sqlSessionFactory-ref="sqlSessionFactory" 
+		/> 
+		 <bean id="AdminCustomerInfoDao" 
+	 class="dagachi.dao.admin.AdminCustomerInfoDao" 
+	 p:sqlSessionFactory-ref="sqlSessionFactory" 
+		/> 
+		 <bean id="CustomerHeartDao" 
+	 class="dagachi.dao.customer.CustomerHeartDao" 
+	 p:sqlSessionFactory-ref="sqlSessionFactory" 
+		/> 
+		 <bean id="OwnerWaitingDao" 
+	 class="dagachi.dao.owner.OwnerWaitingDao" 
+	 p:sqlSessionFactory-ref="sqlSessionFactory" 
+		/> 
+		 <bean id="OwnerLoginDao" 
+	 class="dagachi.dao.owner.OwnerLoginDao" 
+	 p:sqlSessionFactory-ref="sqlSessionFactory" 
+		/> 
+				
+	 
+		 <bean class="dagachi.dao.admin.AdminReviewDao" 
+id="adminReview" p:sqlSessionFactory-ref="sqlSessionFactory" />
+	
+<!-- 	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message.validation</value>
+				<value>message.label</value>
+				<value>message.validation_en</value>
+				<value>message.label_en</value>
+			</list>
+		</property>
+	</bean> -->
+	
+<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" /><!-- 465 or 25 -->
+    <property name="username" value="qkrgytjd080300@gmail.com" /><!-- 본인 이메일 계정 -->
+    <property name="password" value="phs082711*" /><!-- 해당 계정의 비밀번호 -->
+    <property name="defaultEncoding" value="utf-8" />
+    <property name="javaMailProperties"> 
+        <props>
+            <prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.debug">true</prop>
+        </props>
+    </property>
+</bean> 
+	
+
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+
+	</bean>
+
+</beans>
