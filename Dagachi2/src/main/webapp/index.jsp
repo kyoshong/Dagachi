@@ -29,5 +29,16 @@
 
 현종이 입니다?
 
+<a href="board/a_noticeList">게시물 목록</a> <br/>
+<a href="board/a_adminAccountList">관리자 목록</a> <br/>
+<a href="board/c_main">메인페이지</a>
+<br><br>
+현재입니다
+
+<div align="center">
+		<a href="board/a_ownerReceiptList">가맹대기</a> 
+		<a href="board/a_ownerDetailInfoList">가맹정보</a> 
+	</div>
+	
 </body>
 </html>  
