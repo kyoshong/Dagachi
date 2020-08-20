@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customerOrder">
+
+	
+	<insert id="insert" parameterType="dagachi.dto.CustomerOrderDto">
+		insert into Customer_Order(Customer_num,Date_of_use,Restaurant_Name,
+		Number_of_people,Customer_phoneNumber,Reserv_Fee,Reserv_Confirm,Owner_num)
+		values(#{Customer_num},#{Date_of_use},#{Restaurant_Name},
+		#{Number_of_people},#{Customer_phoneNumber},#{Reserv_Fee},#{Reserv_Confirm},#{Owner_num})
+	</insert>
+	
+	
+	<update id="update" parameterType="dagachi.dto.CustomerOrderDto">
+		update Customer_Order set Date_of_use =
+		 #{Date_of_use}, Number_of_people = #{Number_of_people}, 
+		 Customer_phoneNumber = #{Customer_phoneNumber},
+		 where customer_num = #{customer_num}
+	</update>  
+	
+	<select id="list" parameterType="int" 
+	resultType="dagachi.dto.CustomerOrderDto">
+	select * from Customer_Order where customer_num = #{customer_num}
+	</select>
+	
+	
+	<delete id="delete" parameterType="int">
+	delete from Customer_Order where reserv_num = #{reserv_num}
+	</delete>
+	
+	
+</mapper>

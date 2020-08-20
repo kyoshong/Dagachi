@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customerHeart">
+
+	
+	<insert id="insert" parameterType="dagachi.dto.CustomerHeartDto">
+		insert into Heart_List values(#{customer_num},#{owner_num},#{restaurant_Name},
+		#{Restaurant_Pic})
+	</insert>
+	
+
+	<select id="list" parameterType="int" 
+	resultType="dagachi.dto.CustomerHeartDto">
+	select * from Heart_List where customer_num = #{customer_num}
+	</select>
+	
+	
+	<delete id="delete" parameterType="int">
+	delete from Heart_List where owner_num = #{owner_num}
+	</delete>
+
+
+	<select id="count" resultType="int">
+		select count(*) from Heart_List
+	</select>
+</mapper>
