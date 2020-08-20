@@ -1,12 +1,8 @@
 package dagachi.board.controller.hjController;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dagachi.board.model.hjModel.OwnerNoticeDto;
 import dagachi.board.model.hjModel.OwnerPagingDto;
-import dagachi.board.model.hjModel.PagingVO;
-import dagachi.board.service.hjService.AdminMembershipDetailsService;
 import dagachi.board.service.hjService.OwnerNoticeService;
 
 @Controller
