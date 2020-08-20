@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="franchiseList">
+
+<!-- 신규 가맹 대기 -->
+	<select id="FranchiseNewlist"
+		resultType="dagachi.model.board.FranchiseNewlistDto">
+		select * from Owner_Waiting
+	</select>
+
+	<insert id="insert"
+		parameterType="dagachi.model.board.FranchiseMembershipDetailsDto">
+		insert into
+		Owner_SignUp(restaurant_Num,owner_name,owner_email,owner_password,owner_phonenumber,restaurant_Address,owner_SecurityNum,restaurant_Name,owner_Join_Date)
+		values(#{restaurant_Num},#{owner_name},#{owner_email},#{owner_password},#{owner_phonenumber},#{restaurant_Address},#{owner_SecurityNum},#{restaurant_Name},#{owner_Join_Date})
+	</insert>
+
+	<delete id="delete"
+		parameterType="dagachi.model.board.FranchiseNewlistDto">
+		delete from Owner_Waiting where restaurant_Num=#{restaurant_Num}
+	</delete>
+
+	<update id="update"
+		parameterType="dagachi.model.board.FranchiseNewlistDto">
+		update Owner_Waiting set
+		owner_name=#{owner_name}
+		where
+		restaurant_Num=#{restaurant_Num}
+	</update>
+
+	<select id="one"
+		resultType="dagachi.model.board.FranchiseNewlistDto"
+		parameterType="string">
+		select * from Owner_Waiting where restaurant_Num =
+		#{restaurant_Num}
+	</select>
+
+	<select id="max" resultType="int">
+		select max(restaurant_Num) from
+		Owner_Waiting
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from Owner_Waiting
+	</select>
+
+	<select id="list" parameterType="map"
+		resultType="dagachi.model.board.FranchiseNewlistDto">
+		select * from Owner_Waiting order by owner_JoinRequest_Date
+		limit #{start},#{per}
+	</select>
+
+
+<!-- 가맹점 정보 -->
+	<select id="FranchiseList"
+		resultType="dagachi.model.board.FranchiseMembershipDetailsDto">
+		select * from Owner_SignUp
+	</select>
+	<update id="updateInfo"
+		parameterType="dagachi.model.board.FranchiseMembershipDetailsDto">
+		update Owner_SignUp set
+		restaurant_Address=#{restaurant_Address},owner_phonenumber=#{owner_phonenumber}
+		where restaurant_Num=#{restaurant_Num}
+	</update>
+	<delete id="deleteInfo"
+		parameterType="dagachi.model.board.FranchiseMembershipDetailsDto">
+		delete from Owner_SignUp where restaurant_Num=#{restaurant_Num}
+	</delete>
+
+	<select id="franchiseInfo" parameterType="map"
+		resultType="dagachi.model.board.FranchiseMembershipDetailsDto">
+		select * from Owner_SignUp order by owner_num limit
+		#{start},#{per}
+	</select>
+	<select id="oneInfo"
+		resultType="dagachi.model.board.FranchiseMembershipDetailsDto"
+		parameterType="string">
+		select * from Owner_SignUp where restaurant_Num =
+		#{restaurant_Num}
+	</select>
+
+	<select id="maxInfo" resultType="int">
+		select max(restaurant_Num) from
+		Owner_SignUp
+	</select>
+
+	<select id="countInfo" resultType="int">
+		select count(*) from
+		Owner_SignUp
+	</select>
+	
+
+	
+</mapper>
