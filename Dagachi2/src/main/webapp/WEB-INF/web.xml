@@ -56,7 +56,7 @@
 		<url-pattern>/customer/*</url-pattern>
 		<url-pattern>/admin/*</url-pattern>
 		<url-pattern>/owner/*</url-pattern>
-		
+		<url-pattern>/board/*</url-pattern>
 	</servlet-mapping>
 
 	
