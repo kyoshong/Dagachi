@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="storeInfo">
+
+<update id="modifyStoreInfo" parameterType="dagachi.dto.RestaurantInfoDto">
+Update Restaurant_info set restaurant_Name = #{restaurant_Name}, restaurant_Num=#{restaurant_Num}, restaurant_Sector= #{restaurant_Sector},
+owner_PhoneNumber=#{owner_PhoneNumber}, opening_Hours=#{opening_Hours}, restaurant_Address=#{restaurant_Address},
+restaurant_Detail_Address = #{restaurant_Detail_Address}, capacity=#{capacity}, dating=#{dating},
+groupReserv = #{groupReserv}, friend = #{friend}, family = #{family}, restaurant_Pic=#{restaurant_Pic}, playGround=#{playGround}, parking_Lot=#{parking_Lot}
+where owner_Num=#{owner_Num}
+</update>
+
+</mapper>

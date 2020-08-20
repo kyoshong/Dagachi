@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservation">
+<insert id="makeReservation" parameterType="dagachi.dto.ReservationDto">
+Insert into Customer_order (customer_Num, date_Of_Use, time_Of_Use, reserv_Name, restaurant_Name, number_Of_People, customer_PhoneNumber, reserv_Fee, 
+	reserv_Confirm, owner_Num) values(#{customer_Num},#{date_Of_Use},#{time_Of_Use},#{reserv_Name}, #{restaurant_Name},#{number_Of_People},#{customer_PhoneNumber},#{reserv_Fee}
+	,#{reserv_Confirm},#{owner_Num}) 
+</insert>
+
+<select id="reservStandByList" parameterType="Date" resultType="dagachi.dto.ReservationDto"><!-- 예약 대기 -->
+Select customer_Name, time_Of_Use, number_Of_People, customer_PhoneNumber from Customer_order natural join Customer_SignUp where Date_Of_Use =#{Date_Of_Use}
+</select>
+
+<select id ="reservRecordList" parameterType="Date" resultType="dagachi.dto.ReservationDto"> <!-- 예약이력 -->
+Select customer_Name, time_Of_use, number_Of_People, customer_PhoneNumber, reserv_Confirm from Customer_order natural join Customer_SignUp where Date_Of_Use =#{Date_Of_Use}
+</select>
+</mapper>

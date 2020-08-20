@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewHK">
+
+
+<select id="reviewAll" resultType="dagachi.dto.ReviewDtoHK" parameterType="int"><!-- 고객페이지에서 리뷰 버튼 눌렀을 때 리뷰창 or 사장페이지에서 리뷰관리 눌렀을 때   -->
+select * from Review  where owner_Num= #{owner_Num} 
+</select>
+
+<insert id="postReview" parameterType="dagachi.dto.ReviewDtoHK"><!-- 고객이 리뷰 등록하는 sql문 -->
+insert into Review (customer_Name, customer_Num, owner_Num, review_Content, restaurant_Name,
+star_Count, order_Date, review_Passwd, reserv_Num, review_Pic, review_Answer_Content, review_Thumb_Pic)
+values(#{customer_Name}, #{customer_Num}, #{owner_Num},
+#{review_Content}, #{restaurant_Name}, #{star_Count}, #{order_Date}, #{review_Passwd}, #{reserv_Num}, #{review_Pic}, #{review_Answer_Content},#{review_Thumb_Pic}) 
+</insert>
+
+<delete id="deleteReview" parameterType="int"><!-- 고객이 자신이 쓴 리뷰 지우는 sql문 -->
+delete from Review where review_Num = #{review_Num} 
+</delete> 
+
+<select id ="checkReview" resultType="dagachi.dto.ReviewDtoHK" parameterType="int"> <!--고객 또는 사장 쪽에서 리뷰리스트에서 선택할 때   -->
+Select * from Review where review_Num = #{review_Num}
+</select>     
+
+<update id ="modfiyReveiw" parameterType="dagachi.dto.ReviewDtoHK">
+Update Review Set customer_Name=#{customer_Name}, order_Date=#{order_Date}, review_Content=#{review_Content},
+star_Count =#{star_Count}, review_Pic=#{review_Pic}
+where review_Num=#{review_Num}
+</update> 
+
+<update id="replyReview" parameterType="hashMap"><!-- 사장이 리뷰에 대해 답글을 달 때  -->
+Update Review Set review_Answer_Content = #{review_Answer_Content} where review_Num = #{review_Num}
+</update>
+
+<select id="starAvg" resultType="double"> <!-- 매장 평균 별점 구하는 sql문 -->
+select ROUND(AVG(star_Count),2) from Review where owner_Num= #{owner_Num} 
+</select>
+
+<!-- 총 게시글 갯수 출력 -->
+<select id="countAll" parameterType="int" resultType="int">
+	select COUNT(review_Num) FROM Review where owner_Num=#{owner_Num}
+</select>
+
+<!-- 게시물 목록 + 페이징 -->
+<select id="listPage" parameterType="hashMap" resultType="dagachi.dto.ReviewDtoHK">
+select review_Num, customer_Name, order_Date, reg_Date, review_Content, star_Count, review_Pic, review_Thumb_Pic, review_Answer_Content
+from Review where owner_Num=#{owner_Num} order by review_Num desc limit #{displayPost}, #{postNum}
+</select>
+
+
+</mapper>

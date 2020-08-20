@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="menu">
+
+<select id="menuList" parameterType="int" resultType="dagachi.dto.MenuDto">
+select * from Menu where owner_Num = #{ owner_Num }
+</select> 
+
+<select id="menuContent" parameterType="int" resultType="dagachi.dto.MenuDto">
+Select * from Menu where menu_Num =#{menu_Num}
+</select>
+
+<insert id="enrollMenu" parameterType="dagachi.dto.MenuDto">
+insert into Menu (owner_Num, menu_Price, menu_Name, menu_Pic, menu_Des) values (#{owner_Num}, #{menu_Price}, #{menu_Name}, #{menu_Pic}, #{menu_Des})
+</insert>
+
+<update id="modifyMenu" parameterType="dagachi.dto.MenuDto">
+update Menu Set menu_Price =#{menu_Price}, menu_Name =#{menu_Name}, menu_Pic =#{menu_Pic}, menu_Des =#{menu_Des} where menu_Num =#{menu_Num}
+</update>
+
+<delete id="deleteMenu" parameterType="int">
+delete from menu where menu_Num=#{menu_Num}
+</delete>
+
+</mapper>

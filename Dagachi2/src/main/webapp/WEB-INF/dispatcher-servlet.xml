@@ -56,6 +56,18 @@
 
 	<bean class="dagachi.dao.admin.AdminReviewDao" id="adminReview"
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
+		
+		<bean id="CustomerRestaurantReviewDao" class="dagachi.dao.customer.CustomerRestaurantReviewDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+
+<bean id="CustomerOrderPageDao" class="dagachi.dao.customer.CustomerOrderPageDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+
+<bean id="OwnerReviewManagementDao" class="dagachi.dao.owner.OwnerReviewManagementDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+
+<bean id="OwnerStoreManagementDao" class="dagachi.dao.owner.OwnerStoreManagementDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+
+<bean id="OwnerMenuManagementDao" class="dagachi.dao.owner.OwnerMenuManagementDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+
+<bean id="OwnerReservationStatisticsDao" class="dagachi.dao.owner.OwnerReservationStatisticsDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
 
 	<!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
 		<property name="basenames"> <list> <value>message.validation</value> <value>message.label</value> 
@@ -91,5 +103,24 @@
 		<property name="suffix" value=".jsp" />
 
 	</bean>
+	
+	<!-- 업로드 패스 설정 --> 
+<bean class="java.lang.String" id="uploadPath">
+ <constructor-arg value="C:/eclipse_HK_workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ProjectAugust/resources/" />
+</bean>
+
+<!-- 일반 파일 업로드 경로 -->
+
+<!-- <mvc:resources mapping="/reviewImage/**" location="/resources/reviewImage/" /> -->
+
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> <!-- 파일 타입파라미터는 임시저장소 ㄱㄱ -->
+<property name="maxUploadSize" value="100000000" /> 
+<property name="maxInMemorySize" value="100000000" />  
+</bean>
+
+<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />        
+
+
+<context:property-placeholder location="classpath:*.properties" local-override="true" />
 
 </beans>
