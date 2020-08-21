@@ -34,6 +34,9 @@
 		/> </mvc:interceptor> </mvc:interceptors> -->
 
 	<context:component-scan base-package="dagachi.*" />
+<bean id="AdminMembershipDetailsDao"
+		class="dagachi.board.service.hjService.AdminMembershipDetailsDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
 
 	<bean id="CustomerInfoDao"
 		class="dagachi.dao.customer.CustomerInfoDao"
@@ -97,12 +100,7 @@
 	</bean>
 
 
-	<bean id="viewResolver2"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/" />
-		<property name="suffix" value=".jsp" />
-
-	</bean>
+	
 	
 	<!-- 업로드 패스 설정 --> 
 <bean class="java.lang.String" id="uploadPath">
@@ -120,7 +118,12 @@
 
 <bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />        
 
+<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
 
+	</bean>
 <context:property-placeholder location="classpath:*.properties" local-override="true" />
 
 </beans>

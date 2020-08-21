@@ -24,7 +24,7 @@ return false;
 <body>
 <center><b>글삭제</b>
 <br>
-<form method="POST" name="delForm" action="delete" onsubmit="return deleteSave()">
+<form method="POST" name="delForm" action="deleteCus" onsubmit="return deleteSave()">
   
       <input type="hidden" name="num" value="${num}"></td>
    

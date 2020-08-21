@@ -65,7 +65,7 @@ public class CustomerInfoController {
 		return "customer/deleteForm";
 	}
 
-	@PostMapping("/delete")
+	@PostMapping("/deleteCus")
 	public String delete(int num, String password) {
 		try {
 			service.delete(num, password);

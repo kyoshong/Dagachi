@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dagachi.dto.OwnerQuestionDto;
-import dagachi.dto.OwnerQuestionService;
+import dagachi.service.owner.OwnerQuestionService;
 
 @Controller
 @RequestMapping

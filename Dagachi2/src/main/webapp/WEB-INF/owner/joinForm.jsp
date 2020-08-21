@@ -11,7 +11,7 @@
 		var owner_email = $("#owner_email").val();
 
 		$.ajax({
-			url : "emailSend",
+			url : "emailSendOwner",
 			data : {
 				owner_email : owner_email
 			},
@@ -38,7 +38,7 @@
 		var inputCode = $("#inputCode").val();
 
 		$.ajax({
-			url : "certification",
+			url : "certificationOwner",
 			data : {
 				owner_email : owner_email,
 				inputCode : inputCode
@@ -145,7 +145,7 @@ input[type=submit]:hover {
 </style>
 <body>
 
-<form action="joinInfoForm" name="join" method="post" onsubmit="return emailCheck()">
+<form action="joinInfoFormOwner" name="join" method="post" onsubmit="return emailCheck()">
 	<table>
 		<tr>
 			<td style='width: 100px'>이름</td>

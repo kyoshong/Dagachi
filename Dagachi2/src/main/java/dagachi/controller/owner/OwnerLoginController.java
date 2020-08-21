@@ -31,7 +31,7 @@ public class OwnerLoginController {
 	OwnerLoginService service;
 	JavaMailSender mailSender;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginOwner", method = RequestMethod.GET)
 	public String loginform() throws Exception {
 
 		return "owner/login";
@@ -41,7 +41,7 @@ public class OwnerLoginController {
 		return "owner/findPassword";
 	}
 	// 로그인
-	@PostMapping(value = "/login")
+	@PostMapping(value = "/loginOwner")
 	public String login(OwnerLoginDto vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 
 		HttpSession session = req.getSession();
@@ -57,7 +57,7 @@ public class OwnerLoginController {
 	}
 
 	// 로그아웃
-	@GetMapping(value = "/logout")
+	@GetMapping(value = "/logoutOwner")
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 
@@ -66,7 +66,7 @@ public class OwnerLoginController {
 
 	// mailSending 코드
 	@ResponseBody
-	@RequestMapping(value = "/findPw", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/findPassword", method = { RequestMethod.GET, RequestMethod.POST })
 	public boolean mailSending(HttpServletRequest request, String owner_email) throws IOException {
 		int num = 0;
 		try {
@@ -125,7 +125,7 @@ public class OwnerLoginController {
 	// 내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 	// 틀리면 다시 원래 페이지로 돌아오는 메소드
 	@ResponseBody
-	@RequestMapping(value = "/insertCode", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/insertCodeOwner", method = { RequestMethod.GET, RequestMethod.POST })
 	public boolean join_certification(HttpServletRequest request, String inputCode, String owner_email)
 			throws IOException {
 
@@ -138,7 +138,7 @@ public class OwnerLoginController {
 
 	}
 	
-	@RequestMapping(value = "/changePw", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/newPassword", method = {RequestMethod.GET,RequestMethod.POST})
 	public String joinInfo(@RequestParam(value = "owner_email")String owner_email, 
 			Model m) throws Exception {
 		m.addAttribute("owner_email", owner_email);
@@ -147,7 +147,7 @@ public class OwnerLoginController {
 	}
 
 	// 비밀번호 찾기 / 변경
-	@PostMapping("/newPw")
+	@PostMapping("/newPassword")
 	public String updateMyinfo(Model model, String owner_password, String owner_email) throws Exception {
 
 		HashMap<String, Object> map = new HashMap<>();

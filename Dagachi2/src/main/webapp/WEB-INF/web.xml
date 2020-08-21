@@ -57,6 +57,8 @@
 		<url-pattern>/admin/*</url-pattern>
 		<url-pattern>/owner/*</url-pattern>
 		<url-pattern>/board/*</url-pattern>
+				<url-pattern>/mem/*</url-pattern>
+		
 		<url-pattern>/reviewCustomer/*</url-pattern>
 		<url-pattern>/reviewOwner/*</url-pattern>
 		<url-pattern>/storeManagement/*</url-pattern>

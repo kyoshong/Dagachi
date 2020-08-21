@@ -10,7 +10,7 @@
 		var owner_email = $("#owner_email").val();
 
 		$.ajax({
-			url : "findPw",
+			url : "findPassword",
 			data : {
 				owner_email : owner_email
 			},
@@ -41,7 +41,7 @@
 		var inputCode = $("#inputCode").val();
 
 		$.ajax({
-			url : "insertCode",
+			url : "insertCodeOwner",
 			data : {
 				owner_email : owner_email,
 				inputCode : inputCode

@@ -194,7 +194,7 @@ input[type=submit]:hover {
 </style>
 </head>
 <body>
-	<form name="joinInfoForm" method="post" action="joinPost"
+	<form name="joinInfoForm" method="post" action="joinPostOwner"
 		onsubmit="return joinCheck()">
 		<input type="hidden" id="owner_name" name="owner_name"
 			value="${owner_name}"> <input type="hidden" id="owner_email"

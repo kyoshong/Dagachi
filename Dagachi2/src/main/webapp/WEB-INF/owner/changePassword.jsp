@@ -84,7 +84,7 @@ input[type=submit]:hover {
 </head>
 <body>
 <b>내정보 수정</b>
-	<form method="post" name="newPw" action="newPw" onsubmit="return changePw()" >
+	<form method="post" name="newPw" action="newPassword" onsubmit="return changePw()" >
 	<input type="hidden" id="owner_email" name="owner_email" value="${owner_email}">
 		
 		<label>변경할 비밀번호</label>

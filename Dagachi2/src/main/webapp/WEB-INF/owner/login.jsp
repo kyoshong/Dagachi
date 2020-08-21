@@ -67,7 +67,7 @@ input[type=submit]:hover {
 </head>
 <body>
 <c:if test="${member==null}">
-<form method="post" action="login">
+<form method="post" action="loginOwner">
  <p>
   <label for="owner_email">이메일</label>
   <input type="text" id="owner_email" name="owner_email" />

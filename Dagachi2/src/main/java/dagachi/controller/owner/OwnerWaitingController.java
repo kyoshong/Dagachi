@@ -40,7 +40,7 @@ public class OwnerWaitingController {
 
 	// mailSending 코드
 	@ResponseBody
-	@RequestMapping(value = "/emailSend", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/emailSendOwner", method = {RequestMethod.GET,RequestMethod.POST})
 	public void mailSending(HttpServletRequest request, String owner_email)
 			throws IOException {	
 				EmailVO email = new EmailVO();
@@ -89,7 +89,7 @@ System.out.println(certiNum);
 	// 내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 	// 틀리면 다시 원래 페이지로 돌아오는 메소드
 	@ResponseBody
-	@RequestMapping(value = "/certification", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/certificationOwner", method = {RequestMethod.GET,RequestMethod.POST})
 	public boolean join_certification(HttpServletRequest request, String inputCode, String owner_email)
 			throws IOException {
 
@@ -102,7 +102,7 @@ System.out.println(certiNum);
 
 	}
 	
-	@RequestMapping(value = "/joinInfoForm", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/joinInfoFormOwner", method = {RequestMethod.GET,RequestMethod.POST})
 	public String joinInfo(@RequestParam(value = "owner_name")String owner_name, 
 			@RequestParam(value = "owner_email")String owner_email, 
 			@RequestParam(value = "owner_password")String owner_password, Model m) throws Exception {
@@ -114,7 +114,7 @@ System.out.println(certiNum);
 		return "owner/joinInfo";
 	}
 
-	@PostMapping(value = "/joinPost")
+	@PostMapping(value = "/joinPostOwner")
 	public ModelAndView joinPost(OwnerWaitingDto dto,HttpSession session) 	throws Exception {
 
 	ModelAndView mav = new ModelAndView(); 

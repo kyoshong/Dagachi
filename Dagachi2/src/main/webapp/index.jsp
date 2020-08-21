@@ -26,19 +26,46 @@
 <br>
 <a href="owner/login">owner login</a>
 <br><br>
-
+------------------------------------------------------------------------
 현종이 입니다?
 
+<a href="board/customer/c_listPage?num=1">Customer board Paging</a><br><br>
+
+<!-- <a href="board/owner/0_list">Owner board</a><br><br> -->
+
+<a href="board/owner/o_listPage?num=1">Owner board Paging</a><br><br>
+
+<a href="mem/customer/c_crtAccount">고객 회원가입</a><br><br>
+
+<a href="mem/customer/c_login">고객 로그인</a><br><br>
+
+<a href="mem/admin/a_adminInsert">관리자 회원가입</a><br><br>
+
+<a href="mem/admin/a_login">관리자 로그인</a><br><br>
+
+<!-- <a href="mem/admin/admin/a_register">폴더 안 관리자 회원가입 </a><br><br>
+<a href="mem/admin/admin/a_login">폴더 안 관리자 로그인</a><br><br>-->
+-----------------------------------------------------------------------
+현재입니다
 <a href="board/a_noticeList">게시물 목록</a> <br/>
 <a href="board/a_adminAccountList">관리자 목록</a> <br/>
 <a href="board/c_main">메인페이지</a>
 <br><br>
-현재입니다
-
+-------------------------------------------------------------------
+용환입니다
 <div align="center">
 		<a href="board/a_ownerReceiptList">가맹대기</a> 
 		<a href="board/a_ownerDetailInfoList">가맹정보</a> 
 	</div>
-	
+---------------------------------------------------------------
+	한기입니다.
+<a href="reviewCustomer/reviewCustomerList?owner_Num=12&num=1">리뷰 게시판</a><br>
+<a href="reviewCustomer/postReview?owner_Num=12&num=1">리뷰 작성</a><br>
+<%-- <a href="review/list?owner_Num=${owner_Num}"</a>리뷰 게시판<br> --%>
+<a href="reviewOwner/reviewOwnerList?owner_Num=12&num=1">사장님 리뷰 게시판</a><br>
+<a href="storeManagement/storeInfoChangeForm">매장정보수정</a><br>
+<a href="menuManagement/menuList?owner_Num=12">메뉴관리</a><br>
+<a href="reservationCustomer/reservationForm">예약페이지 폼</a><br>
+<a href="reservationStastics/timeChart?owner_Num=12">예약현황분석</a><br>
 </body>
 </html>  
