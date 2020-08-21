@@ -35,7 +35,7 @@ public class NoticeController {
 		m.addAttribute("list", list);
 		int number = list.getCount() - (pageNum - 1) * per;
 		m.addAttribute("number", number);
-		return "/board/a_noticeList";
+		return "view/board/a_noticeList";
 	} 
 
 	
@@ -49,7 +49,7 @@ public class NoticeController {
 		int number = searchList.getCount() - (pageNum - 1) * per;
 		m.addAttribute("number", number);
 		m.addAttribute("searchstr", searchstr);
-		return "board/a_noticeListSearch";
+		return "view/board/a_noticeListSearch";
 	}
 	
 	/*
@@ -70,18 +70,18 @@ public class NoticeController {
 		list = ser.noticeSel();
 		model.addAttribute("list", list);
 	}
-	 //°øÁö»çÇ× ÀÛ¼º½Ã ³¯Â¥°ª
+	 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½
 	 @ModelAttribute("today")
 	 public void today(Model model) {
 		 Date today = new Date();
 		 model.addAttribute("today",today);
 	 }
-	 //°øÁö»çÇ× ÀÛ¼ºÆû
+	 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½
 	 @RequestMapping("noticeWriteForm")
 	 public String getadminWriteForm() {
-		 return "/board/a_noticeWrite";
+		 return "view/board/a_noticeWrite";
 	 }
-	 //°øÁö»çÇ× µî·Ï
+	 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	 @RequestMapping(value = "noticeWrite", method = RequestMethod.POST)
 		public String getadminWrite(OwnerNoticeDto dto, Model m) {
 		 Date today = new Date();
@@ -89,30 +89,30 @@ public class NoticeController {
 		 ser.noticeAdd(dto);
 		 return "redirect:a_noticeList";
 	 } 
-	 //°øÁö»çÇ× Å¬¸¯ÆäÀÌÁö
+	 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 @RequestMapping("noticeInfo")
 	 public String noticeSel_1(@RequestParam(value="noticeNum") int noticeNum, Model model) {
 		 OwnerNoticeDto choose = new OwnerNoticeDto();
 		choose = ser.noticeSel_1(noticeNum);
 		model.addAttribute("choose", choose);
-		return "board/a_noticeUpdateDelete";
+		return "view/board/a_noticeUpdateDelete";
 	}
-	 //°Ë»öÇÊÅÍ °øÁö»çÇ× Å¬¸¯ÆäÀÌÁö
+	 //ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 @RequestMapping("searchNoticeInfo")
 	 public String searchNoticeSel_1(@RequestParam(value="noticeNum") int noticeNum, Model model) {
 		 OwnerNoticeDto choose = new OwnerNoticeDto();
 		choose = ser.noticeSel_1(noticeNum);
 		model.addAttribute("choose", choose);
-		return "board/a_SearchNoticeUpdateDelete";
+		return "view/board/a_SearchNoticeUpdateDelete";
 	}
-	 //°øÁö»çÇ× ¼öÁ¤
+	 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	  @RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
 	  public String noticeUp(OwnerNoticeDto dto, Model model) {
 	  ser.noticeUp(dto);
 	  model.addAttribute("noticeUpdate", dto);
 	 return "redirect:a_noticeList";
 	 }
-	  //°øÁö»çÇ× »èÁ¦
+	  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	  @RequestMapping("noticeDel")
 	  public String noticeDel( @RequestParam("owner_Notice_Num") int owner_Notice_Num, Model model) {
 	  ser.noticeDel(owner_Notice_Num);

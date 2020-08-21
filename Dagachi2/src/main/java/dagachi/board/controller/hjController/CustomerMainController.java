@@ -8,11 +8,11 @@ public class CustomerMainController {
 	
 	@RequestMapping("c_main")
 	public String goMain() {
-		return "board/c_main";
+		return "view/board/c_main";
 	}
 	
 	@RequestMapping("mainAjax")
 	public String getPage() {
-		return "board/c_mainAjax";
+		return "view/board/c_mainAjax";
 	}
 }

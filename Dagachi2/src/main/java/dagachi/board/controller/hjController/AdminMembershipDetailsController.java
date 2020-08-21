@@ -38,37 +38,37 @@ public class AdminMembershipDetailsController {
 		m.addAttribute("adminlist", adminlist);
 		int number = adminlist.getCount() - (pageNum - 1) * per;
 		m.addAttribute("number", number);
-		return "board/a_adminAccountList";
+		return "view/board/a_adminAccountList";
 	}
-	//°ü¸®ÀÚ ½Å±Ôµî·ÏÃ¢ÀÌµ¿
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±Ôµï¿½ï¿½Ã¢ï¿½Ìµï¿½
 	@RequestMapping("adminWriteForm")
 	public String getadminInsert() {
-		 return "board/a_adminInsert";
+		 return "view/board/a_adminInsert";
 	}
 	
-	//°ü¸®ÀÚ ½Å±Ôµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±Ôµï¿½ï¿½
 	@RequestMapping(value ="/adminWrite" ,method=RequestMethod.POST)
 	public String adminInsert(AdminMembershipDetailsDto dto, Model m) {
 		adser.adminAdd(dto);
 		 return "redirect:a_adminAccountList";
 	}
 	
-	//°ü¸®ÀÚ Á¤º¸Á¶È¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping("adminInfo")
 	public String adminUpdate(@RequestParam("admin_Num") int admin_Num, Model model) {
 		AdminMembershipDetailsDto dto = new AdminMembershipDetailsDto();
 		dto = adser.adminSel_1(admin_Num);
 		model.addAttribute("adminUpdate", dto);
-		return "board/a_adminUpdateDelete";
+		return "view/board/a_adminUpdateDelete";
 	}
 	
-	//°ü¸®ÀÚ Á¤º¸ »èÁ¦
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("adminDel")
 	public String adminDel(@RequestParam("admin_Num") int admin_Num, Model m) { 
 		adser.adminDel(admin_Num);
 		return "redirect:a_adminAccountList";
 	}
-	//°ü¸®ÀÚ Á¤º¸ ¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value ="adminUpdate" ,method=RequestMethod.POST)
 	public String adminUp(AdminMembershipDetailsDto dto, Model m) { 
 		adser.adminUp(dto);

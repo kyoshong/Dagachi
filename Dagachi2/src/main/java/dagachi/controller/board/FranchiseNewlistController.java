@@ -28,7 +28,7 @@ public class FranchiseNewlistController {
 		System.out.println();
 		int number = list.getCount() - (pageNum - 1) * per;
 		m.addAttribute("number", number);
-		return "board/a_ownerReceiptList";
+		return "view/board/a_ownerReceiptList";
 	}
 
 	// 리스트
@@ -37,11 +37,11 @@ public class FranchiseNewlistController {
 		FranchiseNewlistDto dto = fnsi.updateForm(restaurant_Num);
 		m.addAttribute("article", dto);
 		m.addAttribute("pageNum", pageNum);
-		return "board/a_receiptPermitForm";
+		return "view/board/a_receiptPermitForm";
 	}
 
 	// 삽입후 삭제 하기
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String insert(FranchiseNewlistDto dto, String restaurant_Num) {
 		System.out.println(dto);
 		 fnsi.insert(dto);
@@ -50,7 +50,7 @@ public class FranchiseNewlistController {
 	}
 
 	// 삭제하기
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String delete(@RequestParam("restaurant_Num") String restaurant_Num) {
 		System.out.println("restaurant_Num::" + restaurant_Num);
 		fnsi.delete(restaurant_Num);

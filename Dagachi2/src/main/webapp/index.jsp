@@ -7,7 +7,7 @@
 </head>
 <body>
 <br><br>                          
-회원이신가요 
+회원이신가요 <br>
 <a href="customer/heartList">내 찜 목록</a>
 <a href="customer/orderList">내 주문리스트</a>
 
@@ -17,7 +17,7 @@
 관리자 입미까?
 <br>
 <a href="admin/list">Admin's Review list</a>
-<br>
+<br>	
 <a href="admin/infoList">Customer Info list</a>
 
 <br><br>
@@ -28,7 +28,7 @@
 <br><br>
 ------------------------------------------------------------------------
 현종이 입니다?
-
+<br>
 <a href="board/customer/c_listPage?num=1">Customer board Paging</a><br><br>
 
 <!-- <a href="board/owner/0_list">Owner board</a><br><br> -->
@@ -46,19 +46,20 @@
 <!-- <a href="mem/admin/admin/a_register">폴더 안 관리자 회원가입 </a><br><br>
 <a href="mem/admin/admin/a_login">폴더 안 관리자 로그인</a><br><br>-->
 -----------------------------------------------------------------------
-현재입니다
+현재입니다<br>
 <a href="board/a_noticeList">게시물 목록</a> <br/>
 <a href="board/a_adminAccountList">관리자 목록</a> <br/>
 <a href="board/c_main">메인페이지</a>
 <br><br>
 -------------------------------------------------------------------
 용환입니다
-<div align="center">
-		<a href="board/a_ownerReceiptList">가맹대기</a> 
-		<a href="board/a_ownerDetailInfoList">가맹정보</a> 
-	</div>
+<div align="left">
+		<a href="board/a_ownerReceiptList">가맹대기</a> <br>
+		<a href="board/a_ownerDetailInfoList">가맹정보</a> <br>
+	</div><br><br>
 ---------------------------------------------------------------
 	한기입니다.
+<br>
 <a href="reviewCustomer/reviewCustomerList?owner_Num=12&num=1">리뷰 게시판</a><br>
 <a href="reviewCustomer/postReview?owner_Num=12&num=1">리뷰 작성</a><br>
 <%-- <a href="review/list?owner_Num=${owner_Num}"</a>리뷰 게시판<br> --%>

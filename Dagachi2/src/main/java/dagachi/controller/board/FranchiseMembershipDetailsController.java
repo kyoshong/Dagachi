@@ -26,7 +26,7 @@ public class FranchiseMembershipDetailsController {
 		m.addAttribute("a_ownerDetailInfoList", infoList);
 		int number = infoList.getCount() - (pageNum - 1) * per;
 		m.addAttribute("number", number);
-		return "board/a_ownerDetailInfoList";
+		return "view/board/a_ownerDetailInfoList";
 	}
 
 	// 리스트
@@ -35,11 +35,11 @@ public class FranchiseMembershipDetailsController {
 		FranchiseMembershipDetailsDto dto = fmsi.updateForm(restaurant_Num);
 		m.addAttribute("articleInfo", dto);
 		m.addAttribute("pageNum", pageNum);
-		return "board/a_ownerDetailUpdateForm";
+		return "view/board/a_ownerDetailUpdateForm";
 	}
 
 	// 수정 하기
-	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "updateInfo", method = RequestMethod.POST)
 	public String update(FranchiseMembershipDetailsDto dto) {
 		System.out.println(dto);
 		 fmsi.update(dto);
@@ -47,7 +47,7 @@ public class FranchiseMembershipDetailsController {
 	}
 
 	// 삭제하기
-	@RequestMapping(value = "/deleteInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "deleteInfo", method = RequestMethod.POST)
 	public String delete(@RequestParam("restaurant_Num") String restaurant_Num) {
 		System.out.println("restaurant_Num::" + restaurant_Num);
 		fmsi.delete(restaurant_Num);
