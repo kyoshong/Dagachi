@@ -41,9 +41,9 @@
 				<li class="owner-menu-tab-item nav-item border"><a
 					class="nav-link" href="reservationManagement?date=${today}">예약관리</a></li>
 				<li class="owner-menu-tab-item nav-item border"><a
-					class="nav-link" href="/storeManagement/storeInfoChangeForm">매장관리</a></li>
+					class="nav-link" href="/myfirst/storeManagement/storeInfoChangeForm">매장관리</a></li>
 				<li class="owner-menu-tab-item nav-item border"><a
-					class="nav-link" href="/owner/o_boardlist">문의사항</a></li>
+					class="nav-link" href="/myfirst/owner/o_boardlist">문의사항</a></li>
 			</ul>
 		</div>
 
@@ -122,10 +122,10 @@
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
 		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
 		crossorigin="anonymous"></script>
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script src="/resources/js/bootstrap.bundle.min.js"></script>
-	<script src="/resources/js/bootstrap-datepicker.min.js"></script>
-	<script src="/resources/js/bootstrap-datepicker.ko.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap.bundle.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap-datepicker.ko.min.js"></script>
 	
 	<script>
 	$(function() {	

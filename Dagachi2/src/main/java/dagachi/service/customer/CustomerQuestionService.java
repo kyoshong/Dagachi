@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import dagachi.dao.customer.CustomerQuestionDao;
 import dagachi.dto.CustomerQuestionDto;
 import dagachi.model.admin.CustomerQuestionList;
+import dagachi.service.admin.Paging;
 
 
 @Service

@@ -7,11 +7,9 @@
 <meta charset="UTF-8">
 <title>사장페이지 | 메인</title>
 
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/resources/css/bootstrap-datepicker.min.css">
-
-<link rel="stylesheet" href="/resources/css/style.css?after">
+<link rel="stylesheet" href="/myfirst/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="/myfirst/resources/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="/myfirst/resources/css/style.css?after">
 </head>
 
 <body>
@@ -41,9 +39,9 @@
 				<li class="owner-menu-tab-item nav-item border"><a
 					class="nav-link active" href="#">예약관리</a></li>
 				<li class="owner-menu-tab-item nav-item border"><a
-					class="nav-link" href="#">매장관리</a></li>
+					class="nav-link" href="/myfirst/storeManagement/storeInfoChangeForm">매장관리</a></li>
 				<li class="owner-menu-tab-item nav-item border"><a
-					class="nav-link" href="#">문의사항</a></li>
+					class="nav-link" href="/myfirst/customer/c_boardlist">문의사항</a></li>
 			</ul>
 		</div>
 
@@ -149,10 +147,10 @@
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
 		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
 		crossorigin="anonymous"></script>
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script src="/resources/js/bootstrap.bundle.min.js"></script>
-	<script src="/resources/js/bootstrap-datepicker.min.js"></script>
-	<script src="/resources/js/bootstrap-datepicker.ko.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap.bundle.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap-datepicker.ko.min.js"></script>
 
 	<script>
 		$(function() {

@@ -4,9 +4,9 @@
 <html>
 <head>
 <title>게시판</title>
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="/myfirst/resources/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/myfirst/resources/css/style.css">
 
 <style type='text/css'>
 <!--
@@ -72,7 +72,7 @@ body,td,a,div,p,pre,input,textarea {font-family:굴림;font-size:9pt;}
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
 		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
 		crossorigin="anonymous"></script>
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script src="/resources/js/bootstrap.bundle.min.js"></script>     
+	<script src="/myfirst/resources/js/bootstrap.min.js"></script>
+	<script src="/myfirst/resources/js/bootstrap.bundle.min.js"></script>     
 </body>
 </html>    

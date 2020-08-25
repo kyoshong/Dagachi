@@ -1,65 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+PUBLIC "-//mybatis.org.DTO Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Cquestion">
 
-	<!-- 고객 자신이 쓴 문의글 리스트 열람 -->
-	<select id="Cquestion"
-		resultType="dagachi.dto.CustomerQuestionDto">
-		select * from customer_question
-	</select>
-	
-	<!-- 고객이 스스로 글을 쓰는 폼 -->
-	<insert id="Cwrite"
+<!-- Customer_writeNo=#{Customer_writeNo}, Customer_writeTitle=#{Customer_writeTitle}, 
+	Customer_name=#{Customer_name}, Date_Created=#{Date_Created}, Customer_num=#{Customer_num} -->
+
+
+<mapper namespace="Customer_Question_board">
+
+	<insert id="insert"
 		parameterType="dagachi.dto.CustomerQuestionDto">
-		insert into customer_question
-		(customer_WriteNo,customer_WriteTitle,customer_Content,customer_Name,date_Created,customer_Num)
-		values
-		(#{customer_WriteNo},#{customer_WriteTitle},#{customer_Content},#{customer_Name},#{date_Created},#{customer_Num})
+		insert into
+		Customer_Question(customer_writeTitle, customer_content, customer_num, Date_created, customer_name)
+		values(#{customer_writeTitle},#{customer_content},#{customer_num},#{Date_Created}, #{customer_name})
 	</insert>
 
-	<!-- 고객 본인이 쓴 글을 조회 -->
-	<select id="Cview" parameterType="int"
-		resultType="dagachi.dto.CustomerQuestionDto">
-		select customer_WriteTitle, customer_Name,
-		customer_Content, customer_WriteNo
-		from
-		customer_question where customer_WriteNo = #{customer_WriteNo}
-	</select>
 
-	<!-- 고객이 올린글 스스로 수정 -->
-	<update id="Cmodify"
+	<update id="update"
 		parameterType="dagachi.dto.CustomerQuestionDto">
-		update customer_question
-		set
-		customer_WriteNo = #{customer_WriteNo},
-		customer_WriteTitle = #{customer_WriteTitle},
-		customer_Name = #{customer_Name},
-		customer_Content = #{customer_Content}
-		where customer_WriteNo = #{customer_WriteNo}
+		update Customer_Question set
+		customer_writeTitle=#{customer_writeTitle},
+		customer_name=#{customer_name},
+		customer_content=#{customer_content}
+		where
+		customer_writeNo=#{customer_writeNo}
+	</update>
+	
+	<update id="updateIsAnswered"
+		parameterType="map">
+		update Customer_Question set
+		isAnswered=#{isAnswered}
+		where
+		customer_writeNo=#{questionId}
 	</update>
 
-	<!-- 고객이 올린글 스스로 삭제 -->
-	<delete id="Cdelete" parameterType="int">
-		delete from Customer_Question
-		where Customer_writeNo=#{Customer_writeNo}
-	</delete>
-
-	<!-- 게시물 총 갯수 -->
-	<select id="Ccount" resultType="int">
-		select count(customer_WriteNo) from 
-		Customer_Question
+	<select id="selectOne"
+		resultType="dagachi.dto.CustomerQuestionDto"
+		parameterType="int">
+		select * from Customer_Question where
+		customer_writeNo=#{customer_writeNo}
 	</select>
 
-	<!-- 게시물 목록 + 페이징 -->
-	<select id="ClistPage" parameterType="hashmap"
-		resultType="dagachi.dto.CustomerQuestionDto">
-		select customer_WriteNo, customer_WriteTitle,
-		customer_Name, date_Created, customer_Num
-		from Customer_Question order by customer_WriteNo
-		desc limit #{displayPost},#{postNum}
+	<delete id="delete" parameterType="int">
+		delete from	Customer_Question
+		where customer_writeNo=#{customer_writeNo}
+	</delete>
 
+
+	<select id="max" resultType="int">
+		select max(customer_writeNo) from
+		customer_Question
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*)
+		from Customer_Question
+	</select>
+
+	<select id="list" parameterType="map"
+		resultType="dagachi.dto.CustomerQuestionDto">
+		select * from Customer_Question
+		order by customer_writeNo desc
+		limit #{start},#{per}
 	</select>
 
 </mapper>
