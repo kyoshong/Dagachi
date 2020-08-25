@@ -1,0 +1,80 @@
+/*
+-----------------------------------------
+1. Global Style
+2. Headers / Menu
+3. Footer
+
+Owner Page
+
+/*
+=========
+1. Global Style
+=========
+*/
+
+/* Common Style */
+html,
+body {
+	font-size: 1rem;
+	line-height: 1.5;
+	height: 100%;
+}
+
+
+/*
+========
+2. Header / Menu
+========
+*/
+
+
+/*
+========
+Owner page
+========
+*/
+.owner-menu-tab-item {
+	height: 80px;
+	font-size: 1.2rem;
+	display: -ms-flexbox;
+  display: flex;
+	-ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.owner-menu-tab-item .active {
+	width: 100%;
+	height: 100%;
+	display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+	align-items: center
+}
+
+.scheduler-container .datepicker.datepicker-inline {
+	width: 100%;
+}
+
+.scheduler-container table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 2px;
+	border-color: grey;
+}
+
+.scheduler-container table th,
+.scheduler-container table td {
+	padding: .75rem;
+	vertical-align: top;
+	border-top: 1px solid #dee2e6;
+}
+
+.scheduler-container table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+

@@ -35,5 +35,4 @@ public class CustomerOrderDao extends SqlSessionDaoSupport {
 		
 		return getSqlSession().selectList("customerOrder.listByOwner", m);
 	}
-	
 }

@@ -24,4 +24,7 @@ public class CustomerOrderService {
 	public void add(CustomerOrderDto dto) {
 		dao.add(dto);
 	}
+	public List<CustomerOrderDto> listByOwner(int num, String date) {
+		return dao.listByOwner(num, date);
+	}
 }
