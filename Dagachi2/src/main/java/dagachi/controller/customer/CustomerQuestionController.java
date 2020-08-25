@@ -1,131 +1,109 @@
 package dagachi.controller.customer;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
-import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dagachi.dto.CustomerQuestionDto;
+import dagachi.model.admin.CustomerQuestionList;
 import dagachi.service.customer.CustomerQuestionService;
+import dagachi.dto.CustomerAnswerDto;
+import dagachi.service.admin.CustomerAnswerService;
 
 @Controller
-@RequestMapping
 public class CustomerQuestionController {
 
-	@Inject
-	private CustomerQuestionService service;
-
-	// 게시물 목록
-	@RequestMapping(value = "customer/c_list", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception {
-
-		List<CustomerQuestionDto> list = null;
-		list = service.list();
-		model.addAttribute("list", list);
+	@Autowired
+	CustomerQuestionService service;
+	@Autowired
+	CustomerAnswerService answerService;
+	
+	@GetMapping("/c_boardlist")
+	public String list(@RequestParam(value = "p", defaultValue = "1") int pageNum,
+			@RequestParam(value = "per", defaultValue = "10") int per, Model m)
+	{
+		// System.out.println("per::"+per);
+		CustomerQuestionList questionList = service.list(pageNum, per);
+		
+		m.addAttribute("list", questionList);
+		int number = questionList.getCount() - (pageNum - 1) * per;
+		m.addAttribute("number", number);
+		return "customer/board/list";
 	}
-
-	// 게시물 목록 + 페이징 추가
-	@RequestMapping(value = "customer/c_listPage", method = RequestMethod.GET)
-	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
-
-		// 게시물 총 갯수
-		int count = service.count();
-
-		// 한 페이지에 출력할 게시물 갯수
-		int postNum = 10;
-
-		// 하단 페이징 번호 ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
-		int pageNum = (int) Math.ceil((double) count / postNum);
-
-		// 출력할 게시물
-		int displayPost = (num - 1) * postNum;
-
-		// 한번에 표시할 페이징 번호의 갯수
-		int pageNum_cnt = 10;
-
-		// 표시되는 페이지 번호 중 마지막 번호
-		int endPageNum = (int) (Math.ceil((double) num / (double) pageNum_cnt) * pageNum_cnt);
-
-		// 표시되는 페이지 번호 중 첫번째 번호
-		int startPageNum = endPageNum - (pageNum_cnt - 1);
-
-		// 마지막 번호 재계산
-		int endPageNum_tmp = (int) (Math.ceil((double) count / (double) pageNum_cnt));
-
-		if (endPageNum > endPageNum_tmp) {
-			endPageNum = endPageNum_tmp;
+	
+	@GetMapping("/c_boardcontent")
+	public String content(@RequestParam(value = "p") int pageNum, int num, Model m) {
+		CustomerQuestionDto dto = service.getContent(num);
+		m.addAttribute("article", dto);
+		m.addAttribute("pageNum", pageNum);
+		
+		CustomerAnswerDto answerDto = answerService.getContentByQuestionId(num);
+		m.addAttribute("answer", answerDto);
+		
+		return "customer/board/content";
+	}
+	
+	@GetMapping("/c_boardwrite")
+	public String writeForm(@ModelAttribute("dto") CustomerQuestionDto dto) {
+		return "customer/board/writeForm";
+	}
+	
+	@PostMapping("/c_boardwrite")
+	public String write(CustomerQuestionDto dto, HttpServletRequest request) {
+		System.out.println(dto.getCustomer_writeTitle());
+		service.insert(dto, request);
+		return "redirect:/customer/list";
+	}
+	
+	@GetMapping("/c_boardupdate")
+	public String updateForm(int num, int p, Model m) {
+		CustomerQuestionDto dto = service.updateForm(num);
+		m.addAttribute("article", dto);
+		m.addAttribute("pageNum", p);
+		return "customer/board/updateForm";
+	}
+	
+	@PutMapping("/c_boardupdate")
+	public String update(CustomerQuestionDto dto) {
+		try {
+			System.out.println(dto.getCustomer_num() + dto.getCustomer_content());
+			service.update(dto);
+			System.out.println("end");
+		} catch (Exception e) {
+			System.out.println(e);
+			return "redirect:/error";
 		}
-
-		boolean prev = startPageNum == 1 ? false : true;
-		boolean next = endPageNum * pageNum_cnt >= count ? false : true;
-
-		List<CustomerQuestionDto> list = null;
-		list = service.listPage(displayPost, postNum);
-		model.addAttribute("list", list);
-		model.addAttribute("pageNum", pageNum);
-
-		// 시작 및 끝 번호
-		model.addAttribute("startPageNum", startPageNum);
-		model.addAttribute("endPageNum", endPageNum);
-
-		// 이전 및 다음
-		model.addAttribute("prev", prev);
-		model.addAttribute("next", next);
-
-		// 현재 페이지
-		model.addAttribute("select", num);
-
+		return "redirect:/customer/board/list";
+	}
+	
+	@GetMapping("/c_boarddelete")
+	public String deleteForm(int num, int p, Model m) {
+		m.addAttribute("num", num);
+		m.addAttribute("pageNum", p);
+		
+		return "customer/board/deleteForm";
 	}
 
-	@RequestMapping(value = "customer/c_write", method = RequestMethod.GET)
-	public void getWrite() throws Exception {
+	@DeleteMapping("/c_boarddelete")
+	public String delete(int num, int p) {
+		service.delete(num);
 
+		return "redirect:/customer/board/list";
 	}
-
-	// 게시물 작성
-	@RequestMapping(value = "customer/c_write", method = RequestMethod.POST)
-	public String postWrite(CustomerQuestionDto dto) throws Exception {
-		service.write(dto);
-
-		return "redirect:c_listPage?num=1";
-	}
-
-	// 게시물 조회
-	@RequestMapping(value = "customer/c_view", method = RequestMethod.GET)
-	public void getView(@RequestParam("customer_WriteNo") int customer_WriteNo, Model model) throws Exception {
-
-		CustomerQuestionDto dto = service.view(customer_WriteNo);
-		model.addAttribute("c_view", dto);
-	}
-
-	@GetMapping(value = "customer/c_modify")
-	public void getModify(@RequestParam("customer_WriteNo") int customer_WriteNo, Model model) throws Exception {
-
-		CustomerQuestionDto dto = service.view(customer_WriteNo);
-
-		model.addAttribute("c_view", dto);
-	}
-
-	// 게시물 수정
-	@PostMapping(value = "customer/c_modify")
-	public String postModify(CustomerQuestionDto dto) throws Exception {
-		service.modify(dto);
-		return "redirect:c_listPage?num=1";
-	}
-
-	// 게시물 삭제
-	@RequestMapping(value = "customer/c_delete", method = RequestMethod.GET)
-	public String getDelete(@RequestParam("customer_WriteNo") int customer_WriteNo) throws Exception {
-
-		service.delete(customer_WriteNo);
-
-		return "redirect:c_listPage?num=1";
+	
+	public void setService(CustomerQuestionService service) {
+		this.service = service;
 	}
 
 }

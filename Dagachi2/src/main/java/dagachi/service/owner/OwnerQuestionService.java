@@ -1,30 +1,69 @@
 package dagachi.service.owner;
 
+import java.sql.Timestamp;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import dagachi.dao.owner.OwnerQuestionDao;
 import dagachi.dto.OwnerQuestionDto;
+import dagachi.model.admin.OwnerQuestionList;
+import dagachi.service.admin.Paging;
 
-public interface OwnerQuestionService {
+@Service
+public class OwnerQuestionService {
 
-	// 게시물 목록
-	public List<OwnerQuestionDto> list() throws Exception;
+	@Autowired
+	OwnerQuestionDao dao;
 
-	// 게시물 작성
-	public void write(OwnerQuestionDto vo) throws Exception;
+	public void insert(OwnerQuestionDto dto, HttpServletRequest request) {
+		dto.setDate_Created(new Timestamp(System.currentTimeMillis()));
+		dto.setOwner_name("test");
+		
+		dao.insert(dto);
+	}
+	
+	public void update(OwnerQuestionDto dto) {
+		dao.update(dto);
+	}
+	
+	public void updateIsAnswered(boolean isAnswered, int questionId) {
+		dao.updateIsAnswered(isAnswered, questionId);
+	}
+	
+	public void delete(int num) {
+		dao.delete(num);
+	}
 
-	// 게시물 조회
-	public OwnerQuestionDto view(int owner_WriteNo) throws Exception;
+	public OwnerQuestionDto updateForm(int num) {
+		return dao.getContent(num);
+	}
+	
+	public OwnerQuestionList list(int pageNum, int per) {
+		int count = dao.count();
+		if (count == 0) {
+			return new OwnerQuestionList();
+		}
 
-	// 게시물 수정
-	public void modify(OwnerQuestionDto dto) throws Exception;
+		int start = (pageNum - 1) * per;
+		List<OwnerQuestionDto> QuestionList = dao.getList(start, per);
 
-	// 게시물 삭제
-	public void delete(int owner_WriteNo) throws Exception;
+		Paging p = new Paging().paging(pageNum, count, per);
 
-	// 게시물 총 갯수
-	public int count() throws Exception;
+		int totalPageCount = p.getTotalPageCount();
+		
+		return new OwnerQuestionList(QuestionList, pageNum, totalPageCount, start, p, count);
+	}
 
-	// 게시물 목록 + 페이징
-	public List<OwnerQuestionDto> listPage(int displayPost, int postNum) throws Exception;
+	
+	public OwnerQuestionDto getContent(int num){
+		return dao.getContent(num);
+	}
 
+	public void setDao(OwnerQuestionDao dao) {
+		this.dao = dao;
+	}
 }

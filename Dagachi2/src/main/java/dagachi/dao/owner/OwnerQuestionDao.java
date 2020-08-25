@@ -1,29 +1,51 @@
 package dagachi.dao.owner;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import dagachi.dto.OwnerQuestionDto;
+import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-public interface OwnerQuestionDao {
+import dagachi.dto.OwnerQuestionDto;;
 
-	// 게시물 목록
-	public List<OwnerQuestionDto> list() throws Exception;
+public class OwnerQuestionDao extends SqlSessionDaoSupport {
 
-	// 게시물 작성
-	public void write(OwnerQuestionDto vo) throws Exception;
+	public void insert(OwnerQuestionDto dto) {
+		getSqlSession().insert("Owner_Question_board.insert", dto);
+	}
 
-	// 게시물 조회
-	public OwnerQuestionDto view(int owner_WriteNo) throws Exception;
+	public void update(OwnerQuestionDto dto) {
+		getSqlSession().update("Owner_Question_board.update", dto);
+	}
 
-	// 게시물 수정
-	public void modify(OwnerQuestionDto dto) throws Exception;
+	public void updateIsAnswered(boolean isAnswered, int questionId) {
+		Map<String, Integer> m = new HashMap<String, Integer>();
+		m.put("isAnswered", isAnswered ? 1 : 0);
+		m.put("questionId", questionId);
+		getSqlSession().update("Owner_Question_board.updateIsAnswered", m);
+	}
 
-	// 게시물 삭제
-	public void delete(int owner_WriteNo) throws Exception;
+	public Integer selectMax() {
+		return getSqlSession().selectOne("Owner_Question_board.max");
+	}
 
-	// 게시물 총 갯수
-	public int count() throws Exception;
+	public OwnerQuestionDto getContent(int num) {
+		return getSqlSession().selectOne("Owner_Question_board.selectOne", num);
+	}
 
-	// 게시물 목록 + 페이징
-	public List<OwnerQuestionDto> listPage(int displayPost, int postNum) throws Exception;
+	public int count() {
+		return getSqlSession().selectOne("Owner_Question_board.count");
+	}
+
+	public List<OwnerQuestionDto> getList(int start, int per) {
+		Map<String, Integer> m = new HashMap<String, Integer>();
+		m.put("start", start);
+		m.put("per", per);
+		return getSqlSession().selectList("Owner_Question_board.list", m);
+	}
+
+	public void delete(int num) {
+		getSqlSession().update("Owner_Question_board.delete", num);
+
+	}
 }
