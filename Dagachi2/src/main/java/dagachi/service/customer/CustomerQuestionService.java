@@ -1,30 +1,69 @@
 package dagachi.service.customer;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import dagachi.dao.customer.CustomerQuestionDao;
 import dagachi.dto.CustomerQuestionDto;
+import dagachi.model.admin.CustomerQuestionList;
 
-public interface CustomerQuestionService {
 
-	// 게시물 목록
-	public List<CustomerQuestionDto> list() throws Exception;
+@Service
+public class CustomerQuestionService {
+	@Autowired
+	CustomerQuestionDao dao;
 
-	// 게시물 작성
-	public void write(CustomerQuestionDto vo) throws Exception;
+	public void insert(CustomerQuestionDto dto, HttpServletRequest request) {
+		dto.setDate_Created(new Timestamp(System.currentTimeMillis()));
+		dto.setCustomer_name("test");
+		
+		dao.insert(dto);
+	}
+	
+	public void update(CustomerQuestionDto dto) {
+		dao.update(dto);
+	}
+	
+	public void updateIsAnswered(boolean isAnswered, int questionId) {
+		dao.updateIsAnswered(isAnswered, questionId);
+	}
+	
+	public void delete(int num) {
+		dao.delete(num);
+	}
 
-	// 게시물 조회
-	public CustomerQuestionDto view(int customer_WriteNo) throws Exception;
+	public CustomerQuestionDto updateForm(int num) {
+		return dao.getContent(num);
+	}
+	
+	public CustomerQuestionList list(int pageNum, int per) {
+		int count = dao.count();
+		if (count == 0) {
+			return new CustomerQuestionList();
+		}
 
-	// 게시물 수정
-	public void modify(CustomerQuestionDto dto) throws Exception;
+		int start = (pageNum - 1) * per;
+		List<CustomerQuestionDto> QuestionList = dao.getList(start, per);
 
-	// 게시물 삭제
-	public void delete(int customer_WriteNo) throws Exception;
+		Paging p = new Paging().paging(pageNum, count, per);
 
-	// 게시물 총 갯수
-	public int count() throws Exception;
+		int totalPageCount = p.getTotalPageCount();
+		
+		return new CustomerQuestionList(QuestionList, pageNum, totalPageCount, start, p, count);
+	}
 
-	// 게시물 목록 + 페이징
-	public List<CustomerQuestionDto> listPage(int displayPost, int postNum) throws Exception;
+	
+	public CustomerQuestionDto getContent(int num){
+		return dao.getContent(num);
+	}
 
+	public void setDao(CustomerQuestionDao dao) {
+		this.dao = dao;
+	}
 }

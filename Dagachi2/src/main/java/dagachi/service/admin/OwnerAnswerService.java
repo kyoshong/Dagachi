@@ -7,37 +7,37 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dagachi.dao.admin.CustomerAnswerDao;
-import dagachi.dto.CustomerAnswerDto;
+import dagachi.dao.admin.OwnerAnswerDao;
+import dagachi.dto.OwnerAnswerDto;
 
 @Service
-public class CustomerAnswerService {
+public class OwnerAnswerService {
 	@Autowired
-	CustomerAnswerDao dao;
+	OwnerAnswerDao dao;
 
-	public void insert(CustomerAnswerDto dto, HttpServletRequest request) {
+	public void insert(OwnerAnswerDto dto, HttpServletRequest request) {
 		dto.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-		
+
 		dao.insert(dto);
 	}
-	
-	public void update(CustomerAnswerDto dto, HttpServletRequest request) {
+
+	public void update(OwnerAnswerDto dto, HttpServletRequest request) {
 		dao.update(dto);
 	}
-	
+
 	public void delete(int num) {
 		dao.delete(num);
 	}
 
-	public CustomerAnswerDto getContent(int id) {
+	public OwnerAnswerDto getContent(int id) {
 		return dao.getContent(id);
 	}
-	
-	public CustomerAnswerDto getContentByQuestionId(int questionId){
+
+	public OwnerAnswerDto getContentByQuestionId(int questionId) {
 		return dao.getContentByQuestionId(questionId);
 	}
-	
-	public void setDao(CustomerAnswerDao dao) {
+
+	public void setDao(OwnerAnswerDao dao) {
 		this.dao = dao;
 	}
 }
