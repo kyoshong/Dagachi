@@ -3,23 +3,26 @@ package dagachi.dto;
 
 
 
+import java.sql.Date;
+import java.sql.Time;
+
 import lombok.Getter;
 import lombok.Setter;
 @Getter
 @Setter
 public class CustomerOrderDto {
-	
-	private int reserv_Num; //주문번호
-	private int customer_Num; //고객번호 
-	private String date_Of_Use; //주문일
-	private String time_Of_Use; // 주문 시간
-	private String reserv_Name; // 예약자 명
-	private String restaurant_Name;//상호명 
-	private int number_Of_People; //인원 
-	private String customer_PhoneNumber;//고객전화번호 
-	private int reserv_Fee;//예약금 
-	private String reserv_Confirm;//예약확정 여부 
-	private int owner_Num;//사장 가맹번호 
-	private String customer_Name; //예약자명
+   
+   private int reserv_num;
+   private int customer_num;
+   private Date date_of_use;
+   private String restaurant_name;
+   private int number_of_people;
+   private String customer_phoneNumber;
+   private long reserv_fee;
+   private String reserv_confirm;
+   private int owner_num;
+   private String restaurant_pic;
+   private String owner_phonenumber;
+   private Time time_of_use;
 
 }

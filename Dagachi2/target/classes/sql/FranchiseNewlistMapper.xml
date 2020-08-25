@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert"
 		parameterType="dagachi.model.board.FranchiseMembershipDetailsDto">
 		insert into
-		Owner_SignUp(restaurant_Num,owner_name,owner_email,owner_password,owner_phonenumber,restaurant_Address,owner_SecurityNum,restaurant_Name,owner_Join_Date)
-		values(#{restaurant_Num},#{owner_name},#{owner_email},#{owner_password},#{owner_phonenumber},#{restaurant_Address},#{owner_SecurityNum},#{restaurant_Name},#{owner_Join_Date})
+		Owner_SignUp(restaurant_Num,owner_name,owner_email,owner_password,owner_phonenumber,restaurant_Address,restaurant_detail_Address,owner_SecurityNum,restaurant_Name,owner_Join_Date)
+		values(#{restaurant_Num},#{owner_name},#{owner_email},#{owner_password},#{owner_phonenumber},#{restaurant_Address},#{restaurant_detail_Address},#{owner_SecurityNum},#{restaurant_Name},#{owner_Join_Date})
 	</insert>
 
 	<delete id="delete"
@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateInfo"
 		parameterType="dagachi.model.board.FranchiseMembershipDetailsDto">
 		update Owner_SignUp set
-		restaurant_Address=#{restaurant_Address},owner_phonenumber=#{owner_phonenumber}
+		restaurant_Address=#{restaurant_Address},restaurant_detail_Address=#{restaurant_detail_Address},owner_phonenumber=#{owner_phonenumber}
 		where restaurant_Num=#{restaurant_Num}
 	</update>
 	<delete id="deleteInfo"

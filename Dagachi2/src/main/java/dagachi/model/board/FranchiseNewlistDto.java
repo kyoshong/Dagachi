@@ -12,9 +12,18 @@ public class FranchiseNewlistDto {
 	private String owner_password;
 	private String owner_phonenumber;
 	private String restaurant_Address;
+	private String restaurant_detail_Address;
 	private String owner_SecurityNum;
 	private String restaurant_Name;
 	
+	
+	
+	public String getRestaurant_detail_Address() {
+		return restaurant_detail_Address;
+	}
+	public void setRestaurant_detail_Address(String restaurant_detail_Address) {
+		this.restaurant_detail_Address = restaurant_detail_Address;
+	}
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date owner_JoinRequest_Date;
 	
@@ -81,13 +90,16 @@ public class FranchiseNewlistDto {
 	public void setOwner_Join_Date(Date owner_Join_Date) {
 		this.owner_Join_Date = owner_Join_Date;
 	}
+	
 	@Override
 	public String toString() {
 		return "FranchiseNewlistDto [restaurant_Num=" + restaurant_Num + ", owner_name=" + owner_name + ", owner_email="
 				+ owner_email + ", owner_password=" + owner_password + ", owner_phonenumber=" + owner_phonenumber
-				+ ", restaurant_Address=" + restaurant_Address + ", owner_SecurityNum=" + owner_SecurityNum
-				+ ", restaurant_Name=" + restaurant_Name + ", owner_JoinRequest_Date=" + owner_JoinRequest_Date
-				+ ", owner_Join_Date=" + owner_Join_Date + "]";
+				+ ", restaurant_Address=" + restaurant_Address + ", restaurant_detail_Address="
+				+ restaurant_detail_Address + ", owner_SecurityNum=" + owner_SecurityNum + ", restaurant_Name="
+				+ restaurant_Name + ", owner_JoinRequest_Date=" + owner_JoinRequest_Date + ", owner_Join_Date="
+				+ owner_Join_Date + "]";
 	}
+	
 	
 }

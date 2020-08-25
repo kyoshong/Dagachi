@@ -68,5 +68,8 @@
 <a href="menuManagement/menuList?owner_Num=12">메뉴관리</a><br>
 <a href="reservationCustomer/reservationForm">예약페이지 폼</a><br>
 <a href="reservationStastics/timeChart?owner_Num=12">예약현황분석</a><br>
+
+-0825
+
 </body>
 </html>  
