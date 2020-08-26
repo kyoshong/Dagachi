@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org.DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customer_Answer">
+
+	<insert id="insert"
+		parameterType="dagachi.dto.CustomerAnswerDto">
+		insert into
+		Customer_Answer(title, content, createdAt,
+		Customer_Question_id)
+		values(#{title},#{content},#{createdAt},#{Customer_Question_id})
+	</insert>
+
+	<update id="update"
+		parameterType="dagachi.dto.CustomerAnswerDto">
+		update Customer_Answer set
+		content=#{content}
+		where
+		Customer_Question_id=#{Customer_Question_id}
+	</update>
+
+	<select id="selectOne"
+		resultType="dagachi.dto.CustomerAnswerDto" parameterType="int">
+		select *
+		from Customer_Answer where
+		id=#{id}
+	</select>
+
+	<select id="selectOneByQuestionId"
+		resultType="dagachi.dto.CustomerAnswerDto" parameterType="int">
+		select *
+		from Customer_Answer where
+		Customer_Question_id=#{questionId}
+	</select>
+
+	<delete id="delete"
+		parameterType="dagachi.dto.CustomerAnswerDto">
+		delete from Customer_Answer
+		where
+		id=#{id}
+	</delete>
+
+</mapper>

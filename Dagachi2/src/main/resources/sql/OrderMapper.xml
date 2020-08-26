@@ -31,5 +31,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from Customer_Order where reserv_num = #{reserv_num}
 	</delete>
 	
+	<select id="listByOwner" parameterType="map" 
+	resultType="dagachi.dto.CustomerOrderDto">
+	select * from Customer_Order where owner_num = #{owner_num} and DATE(Date_of_use) = #{date};
+	</select>
 	
 </mapper>

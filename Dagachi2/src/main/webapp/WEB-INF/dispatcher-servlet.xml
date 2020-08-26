@@ -149,4 +149,33 @@
 	</bean>
 <context:property-placeholder location="classpath:*.properties" local-override="true" />
 
+
+
+<!-- 선하 -->
+
+	<bean class="dagachi.dao.customer.CustomerQuestionDao" id="questionDao">
+		<property name="sqlSessionFactory">
+			<ref bean="sqlSessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean class="dagachi.dao.admin.CustomerAnswerDao" id="answerDao">
+		<property name="sqlSessionFactory">
+			<ref bean="sqlSessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean class="dagachi.dao.owner.OwnerQuestionDao" id="OwnerQuestionDao">
+		<property name="sqlSessionFactory">
+			<ref bean="sqlSessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean class="dagachi.dao.admin.OwnerAnswerDao" id="OwnerAnswerDao">
+		<property name="sqlSessionFactory">
+			<ref bean="sqlSessionFactory"/>
+		</property>
+	</bean>
+	
+	<!-- 선하 -->
 </beans>

@@ -12,6 +12,7 @@ public class FranchiseMembershipDetailsDto {
 	private String owner_password;
 	private String owner_phonenumber;
 	private String restaurant_Address;
+	private String restaurant_detail_Address;
 	private String owner_SecurityNum;
 	private String restaurant_Name;
 	private int owner_num;
@@ -99,13 +100,22 @@ public class FranchiseMembershipDetailsDto {
 		this.owner_Join_Date = owner_Join_Date;
 	}
 
+	
+	public String getRestaurant_detail_Address() {
+		return restaurant_detail_Address;
+	}
+
+	public void setRestaurant_detail_Address(String restaurant_detail_Address) {
+		this.restaurant_detail_Address = restaurant_detail_Address;
+	}
+
 	@Override
 	public String toString() {
 		return "FranchiseMembershipDetailsDto [restaurant_Num=" + restaurant_Num + ", owner_name=" + owner_name
 				+ ", owner_email=" + owner_email + ", owner_password=" + owner_password + ", owner_phonenumber="
-				+ owner_phonenumber + ", restaurant_Address=" + restaurant_Address + ", owner_SecurityNum="
-				+ owner_SecurityNum + ", restaurant_Name=" + restaurant_Name + ", owner_num=" + owner_num
-				+ ", owner_Join_Date=" + owner_Join_Date + "]";
+				+ owner_phonenumber + ", restaurant_Address=" + restaurant_Address + ", restaurant_detail_Address="
+				+ restaurant_detail_Address + ", owner_SecurityNum=" + owner_SecurityNum + ", restaurant_Name="
+				+ restaurant_Name + ", owner_num=" + owner_num + ", owner_Join_Date=" + owner_Join_Date + "]";
 	}
 
 }

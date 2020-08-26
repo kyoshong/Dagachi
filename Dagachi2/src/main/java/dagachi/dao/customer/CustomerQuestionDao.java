@@ -1,29 +1,49 @@
 package dagachi.dao.customer;
 
+
 import java.util.*;
+import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import dagachi.dto.CustomerQuestionDto;
 
-public interface CustomerQuestionDao {
+public class CustomerQuestionDao extends SqlSessionDaoSupport {
 
-	// 게시물 목록
-	public List<CustomerQuestionDto> list() throws Exception;
+	public void insert(CustomerQuestionDto dto) {
+		getSqlSession().insert("Customer_Question_board.insert", dto);
+	}
+	
+	public void update(CustomerQuestionDto dto) {
+		getSqlSession().update("Customer_Question_board.update", dto);
+	}
+	
+	public void updateIsAnswered(boolean isAnswered, int questionId) {
+		Map<String, Integer> m = new HashMap<String, Integer>();
+		m.put("isAnswered", isAnswered?1:0);
+		m.put("questionId", questionId);
+		getSqlSession().update("Customer_Question_board.updateIsAnswered", m);
+	}
 
-	// 게시물 작성
-	public void write(CustomerQuestionDto vo) throws Exception;
+	public Integer selectMax() {
+		return getSqlSession().selectOne("Customer_Question_board.max");
+	}
 
-	// 게시물 조회
-	public CustomerQuestionDto view(int customer_WriteNo) throws Exception;
+	public CustomerQuestionDto getContent(int num) {
+		return getSqlSession().selectOne("Customer_Question_board.selectOne", num);
+	}
 
-	// 게시물 수정
-	public void modify(CustomerQuestionDto dto) throws Exception;
+	public int count() {
+		return getSqlSession().selectOne("Customer_Question_board.count");
+	}
 
-	// 게시물 삭제
-	public void delete(int customer_WriteNo) throws Exception;
+	public List<CustomerQuestionDto> getList(int start, int per) {
+		Map<String, Integer> m = new HashMap<String, Integer>();
+		m.put("start", start);
+		m.put("per", per);
+		return getSqlSession().selectList("Customer_Question_board.list", m);
+	}
 
-	// 게시물 총 갯수
-	public int count() throws Exception;
+	public void delete(int num) {
+		getSqlSession().update("Customer_Question_board.delete", num);
 
-	// 게시물 목록 + 페이징
-	public List<CustomerQuestionDto> listPage(int displayPost, int postNum) throws Exception;
+	}
 }

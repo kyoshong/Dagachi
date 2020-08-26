@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org.DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Owner_Answer">
+
+	<insert id="insert" parameterType="dagachi.dto.OwnerAnswerDto">
+		insert
+		into
+		Owner_Answer(title,
+		content, createdAt, Owner_Question_id)
+		values(#{title},#{content},#{createdAt},#{Owner_Question_id})
+	</insert>
+
+	<update id="update" parameterType="dagachi.dto.OwnerAnswerDto">
+		update Owner_Answer set
+		content=#{content}
+		where
+		Owner_Question_id=#{Owner_Question_id}
+	</update>
+
+	<select id="selectOne" resultType="dagachi.dto.OwnerAnswerDto"
+		parameterType="int">
+		select * from Owner_Answer where
+		id=#{id}
+	</select>
+
+	<select id="selectOneByQuestionId"
+		resultType="dagachi.dto.OwnerAnswerDto" parameterType="int">
+		select * from
+		Owner_Answer
+		where
+		Owner_Question_id=#{questionId}
+	</select>
+
+	<delete id="delete" parameterType="dagachi.dto.OwnerAnswerDto">
+		delete from Owner_Answer
+		where
+		id=#{id}
+	</delete>
+
+</mapper>

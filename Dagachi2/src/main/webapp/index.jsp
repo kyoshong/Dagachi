@@ -29,11 +29,6 @@
 ------------------------------------------------------------------------
 현종이 입니다?
 <br>
-<a href="board/customer/c_listPage?num=1">Customer board Paging</a><br><br>
-
-<!-- <a href="board/owner/0_list">Owner board</a><br><br> -->
-
-<a href="board/owner/o_listPage?num=1">Owner board Paging</a><br><br>
 
 <a href="mem/customer/c_crtAccount">고객 회원가입</a><br><br>
 
@@ -42,6 +37,9 @@
 <a href="mem/admin/a_adminInsert">관리자 회원가입</a><br><br>
 
 <a href="mem/admin/a_login">관리자 로그인</a><br><br>
+
+<li><a href="customer/c_boardlist">Customer Question Page</a></li>
+<li><a href="owner/o_boardlist">Owner Question Page</a></li>
 
 <!-- <a href="mem/admin/admin/a_register">폴더 안 관리자 회원가입 </a><br><br>
 <a href="mem/admin/admin/a_login">폴더 안 관리자 로그인</a><br><br>-->
@@ -68,5 +66,18 @@
 <a href="menuManagement/menuList?owner_Num=12">메뉴관리</a><br>
 <a href="reservationCustomer/reservationForm">예약페이지 폼</a><br>
 <a href="reservationStastics/timeChart?owner_Num=12">예약현황분석</a><br>
+
+-0825
+
+---------------------------------------------------------------
+선하
+
+<ul>
+<li><a href="owner/main">사장님페이지</a></li>
+
+<li><a href="admin/c_questionList">admin Customer Question List</a></li>
+<li><a href="admin/o_questionList">admin Owner Question List</a></li>
+
+</ul>
 </body>
 </html>  

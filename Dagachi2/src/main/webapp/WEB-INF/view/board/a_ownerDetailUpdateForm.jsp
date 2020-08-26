@@ -44,6 +44,7 @@
     주민등록번호: <input type="text" name="owner_SecurityNum" value="${articleInfo.owner_SecurityNum}" readonly="readonly" size="13"><br>
     사업자 등록 번호: <input type="text" value="${articleInfo.restaurant_Num}" readonly="readonly" size="8"><br>
     주소지: <input type="text" name="restaurant_Address" value="${articleInfo.restaurant_Address}" size="40"><br>
+    상세주소: <input type="text" name="restaurant_detail_Address" value="${articleInfo.restaurant_detail_Address}" size="40"><br>
     대표자 연락처: <input type="text" name="owner_phonenumber" value="${articleInfo.owner_phonenumber}" ><br>
     E-mail 계정: <input type="text" name="owner_email" value="${articleInfo.owner_email}" readonly="readonly"><br>
     가입 날짜: <input type="text" name="owner_Join_Date" readonly="readonly" value=<fmt:formatDate value="${articleInfo.owner_Join_Date}" pattern="yyyy-MM-dd"/>><br>

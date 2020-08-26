@@ -9,11 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="dagachi.dto.OwnerWaitingDto">
-		insert into Owner_Waiting
-		values(#{restaurant_Num},#{owner_name},#{owner_email},
-		#{owner_password},#{owner_phonenumber},#{restaurant_Address},
-		#{owner_SecurityNum},#{restaurant_Name},now(),#{restaurant_detail_Address})
-	</insert>
+      insert into Owner_Waiting(restaurant_Num,owner_name,owner_email,
+      owner_password,owner_phonenumber,restaurant_Address,
+      owner_SecurityNum,restaurant_Name,owner_JoinRequest_Date,restaurant_detail_Address)
+      values(#{restaurant_Num},#{owner_name},#{owner_email},
+      #{owner_password},#{owner_phonenumber},#{restaurant_Address},
+      #{owner_SecurityNum},#{restaurant_Name},now(),#{restaurant_detail_Address})
+   </insert>
 
 	<delete id="delete" parameterType="int">
 		delete from Owner_Waiting where restaurant_Num=#{restaurant_Num}

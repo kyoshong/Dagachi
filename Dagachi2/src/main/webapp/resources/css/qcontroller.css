@@ -1,0 +1,52 @@
+/*  Plugin: qController (Controls Quantity)
+ *   Frameworks: jQuery 3.3.1
+ *   Author: Asif Mughal
+ *   GitHub: https://github.com/CodeHimBlog
+ *   URL: https://www.codehim.com
+ *   License: MIT License
+ *   Copyright (c) 2018 - Asif Mughal
+ */
+/* File: qcontroller.css */
+
+/* basic style of controller */
+.quantity{
+   font-size: 14px;
+   padding: 10px;
+   text-align: center;
+   width: 200px;
+   background: #ccc;
+   color: #212121;
+   border-radius: 4px;
+   position: relative;
+   margin-left: auto;
+   margin-right: auto;
+}
+/* qController plus and minus buttons */
+.quantity .minus,
+.quantity .plus{
+   font-size: 16px;
+   display: inline-block;
+   line-height: 20px;
+   cursor: pointer;
+   padding: 6px;
+}
+.quantity .plus{
+    margin:  0 20px 0 40px;
+}
+/* Slider styles */
+.qslider{
+   display: block;
+   position: relative;
+   margin-left: auto;
+   margin-right: auto;
+   margin: 80px auto;
+}
+/* quantity status */
+.q-status{
+   position: absolute;
+   margin: 10px;
+}
+/* container for controller */
+.myQuantity{
+    margin: 40px;
+}
