@@ -6,7 +6,7 @@
 <title>메뉴 관리</title>
 </head>
 <body>
-<button onclick="location.href='/menuManagement/enrollMenu' ">메뉴 등록</button>
+<button onclick="location.href='enrollMenu' ">메뉴 등록</button>
 
 <h4 style="text-align:center">메뉴 목록</h4>
 <table width="1000" border="1" cellspacing="1" cellpadding="0" style="text-align: center;" align="center"> 

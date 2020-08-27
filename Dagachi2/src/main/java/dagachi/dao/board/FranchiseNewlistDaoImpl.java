@@ -23,6 +23,10 @@ public class FranchiseNewlistDaoImpl extends SqlSessionDaoSupport implements Fra
 	public void insert(FranchiseNewlistDto dto) {
 		getSqlSession().insert("franchiseList.insert", dto);
 	}
+	
+	public void insertRestaurantInfo(FranchiseNewlistDto dto) {
+		getSqlSession().insert("franchiseList.insertRestaurantInfo",dto);
+	}
 
 	public FranchiseNewlistDto getContent(String restaurant_Num) {
 		return getSqlSession().selectOne("franchiseList.one",restaurant_Num);

@@ -1,10 +1,10 @@
 package dagachi.controller.owner;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dagachi.dto.MenuDto;
+import dagachi.dto.OwnerLoginDto;
 import dagachi.service.owner.OwnerMenuManagementService;
 import dagachi.utils.UploadFileUtils;
 import lombok.Setter;
@@ -30,10 +31,12 @@ public class OwnerMenuManagementController {
 	private OwnerMenuManagementService service;
 	
 	@GetMapping("/menuList")
-	public String getMenuList(Model model, @RequestParam("owner_Num") int owner_Num) throws Exception {
+	public String getMenuList(Model model, HttpSession session) throws Exception {
 		
 		List<MenuDto> list = null;
-		list=service.menuList(owner_Num);
+		
+		
+		list=service.menuList(((OwnerLoginDto) session.getAttribute("member")).getOwner_num());
 		model.addAttribute("menuList",list);
 		
 		return "owner/menu/o_menuManagement";
@@ -74,7 +77,7 @@ public class OwnerMenuManagementController {
 				
 		service.enrollMenu(dto);
 		
-		return "redirect:menuList?owner_Num=12";
+		return "redirect:menuList";
 	}
 	
 	@GetMapping("/modifyMenu")

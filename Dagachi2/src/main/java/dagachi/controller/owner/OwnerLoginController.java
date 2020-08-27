@@ -53,7 +53,7 @@ public class OwnerLoginController {
 		} else {
 			session.setAttribute("member", login);
 		}
-		return "redirect:/owner/login";
+		return "redirect:/owner/loginOwner";
 	}
 
 	// 로그아웃

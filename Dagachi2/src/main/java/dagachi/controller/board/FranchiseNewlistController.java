@@ -45,6 +45,7 @@ public class FranchiseNewlistController {
 	public String insert(FranchiseNewlistDto dto, String restaurant_Num) {
 		System.out.println(dto);
 		 fnsi.insert(dto);
+		 fnsi.insertRestaurantInfo(dto);
 		 fnsi.delete(restaurant_Num);
 		return "redirect:a_ownerReceiptList";
 	}

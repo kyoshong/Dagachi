@@ -108,9 +108,9 @@
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" /><!-- 465 or 25 -->
-		<property name="username" value="qkrgytjd080300@gmail.com" /><!-- 
+		<property name="username" value="dagachi22@gmail.com" /><!-- 
 			본인 이메일 계정 -->
-		<property name="password" value="phs082711*" /><!-- 해당 계정의 비밀번호 -->
+		<property name="password" value="qwer1234*" /><!-- 해당 계정의 비밀번호 -->
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="javaMailProperties">
 			<props>
@@ -127,8 +127,8 @@
 	
 	<!-- 업로드 패스 설정 --> 
 <bean class="java.lang.String" id="uploadPath">
- <constructor-arg value="D:/git_init/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Dagachi2/resources/" />
-</bean>
+ <constructor-arg value="C:/Users/Hkkkkkk21/git_local_repository/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Dagachi2/resources/" />
+</bean> <!-- <%=request.getRealPath("/") %> -->
 
 <!-- 일반 파일 업로드 경로 -->
 

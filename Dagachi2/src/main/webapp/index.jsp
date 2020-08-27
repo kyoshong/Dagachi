@@ -24,7 +24,7 @@
 사장입니까?
 <a href="owner/joinForm">회원 가입하기</a>
 <br>
-<a href="owner/login">owner login</a>
+<a href="owner/loginOwner">owner login</a>
 <br><br>
 ------------------------------------------------------------------------
 현종이 입니다?
@@ -61,13 +61,13 @@
 <a href="reviewCustomer/reviewCustomerList?owner_Num=12&num=1">리뷰 게시판</a><br>
 <a href="reviewCustomer/postReview?owner_Num=12&num=1">리뷰 작성</a><br>
 <%-- <a href="review/list?owner_Num=${owner_Num}"</a>리뷰 게시판<br> --%>
-<a href="reviewOwner/reviewOwnerList?owner_Num=12&num=1">사장님 리뷰 게시판</a><br>
+<a href="reviewOwner/reviewOwnerList?num=1">사장님 리뷰 게시판</a><br>
 <a href="storeManagement/storeInfoChangeForm">매장정보수정</a><br>
-<a href="menuManagement/menuList?owner_Num=12">메뉴관리</a><br>
+<a href="menuManagement/menuList">메뉴관리</a><br>
 <a href="reservationCustomer/reservationForm">예약페이지 폼</a><br>
-<a href="reservationStastics/timeChart?owner_Num=12">예약현황분석</a><br>
+<a href="reservationStastics/timeChart">예약현황분석</a><br>
 
--0825
+
 
 ---------------------------------------------------------------
 선하
@@ -79,5 +79,7 @@
 <li><a href="admin/o_questionList">admin Owner Question List</a></li>
 
 </ul>
+
+-0826
 </body>
 </html>  

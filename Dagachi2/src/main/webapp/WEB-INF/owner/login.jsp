@@ -89,6 +89,7 @@ input[type=submit]:hover {
  <c:if test="${member !=null}">
  <p>${member.owner_name} 님 환영합니다.</p>
  <p><a href="logout">로그아웃</a></p>
+ <p><a href="/index.jsp">홈</a></p>
 </c:if>
 </body>
 </html>
