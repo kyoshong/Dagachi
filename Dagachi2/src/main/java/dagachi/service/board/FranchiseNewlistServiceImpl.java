@@ -27,6 +27,12 @@ public class FranchiseNewlistServiceImpl implements FranchiseNewlistService {
 		Date date = new Date(System.currentTimeMillis());
 		dto.setOwner_Join_Date(date);
 		fndi.insert(dto);	
+		
+	}
+	
+	public void insertRestaurantInfo(FranchiseNewlistDto dto) {
+		
+		fndi.insertRestaurantInfo(dto);
 	}
 	
 	/*

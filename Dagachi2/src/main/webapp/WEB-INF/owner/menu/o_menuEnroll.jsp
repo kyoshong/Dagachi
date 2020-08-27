@@ -10,14 +10,12 @@
 <form method= "post" enctype="multipart/form-data">
 <table border="1" cellspacing="1" align="center">
 
-<tr>
-<td><label>가맹 번호</label></td>
-<td><input type="text" name="owner_Num"/></td>
-</tr>
+
 
 <tr>
 <td><label>메뉴 이름</label></td>
 <td><input type="text" name="menu_Name" /></td>
+<td><input type="hidden" name="owner_Num" value="${member.owner_num}"/></td>
 </tr>
 
 <tr>
@@ -27,7 +25,7 @@
 
 <tr>
 <td><label>메뉴 가격</label></td>
-<td><input type="text" name="menu_Price" /></td>
+<td><input type="text" name="menu_Price"/></td>
 </tr>
 
 <tr>
@@ -39,9 +37,10 @@
 </tr>
 
 </table>
-
-<button type="submit" class="btn_enroll">등록</button>
+<div align="center">
+<button type="submit" class="btn_enroll" align="center">등록</button>
 <button type="button" class="btn_cancel" onclick="history.go(-1)">취소</button>
+</div>
 </form>
 
 <script>

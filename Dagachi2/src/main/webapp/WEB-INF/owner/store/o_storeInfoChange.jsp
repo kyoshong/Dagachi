@@ -35,23 +35,20 @@
 <title>매장 정보 수정</title>
 </head>
 <body>
+
 <form enctype="multipart/form-data" method="post">
 <table>
 
 <tr>
-<td><label>사장 가맹번호</label></td>
-<td><input type="text" name="owner_Num"/></td>
+<td><input type="hidden" name="owner_Num" value="${owner_Num}"></td>
 </tr>
-
+<tr>
+<td><input type="hidden" name="restaurant_Num" value="${restaurant_Num}"/></td>
+</tr>
 
 <tr>
 <td><label>매장명</label></td>
-<td><input type="text" name="restaurant_Name"/></td>
-</tr>
-
-<tr>
-<td><label>사업자번호</label></td>
-<td><input type="text" name="restaurant_Num"/></td>
+<td><input type="text" name="restaurant_Name" value="${restaurant_Name}" readonly/></td>
 </tr>
 
 <tr>
@@ -69,7 +66,7 @@
 </tr>
 
 <tr>
-<td><label>매장번호</label></td>
+<td><label>매장전화번호</label></td>
 <td><input type="text" name="owner_PhoneNumber"/></td>
 </tr>
 
@@ -97,7 +94,7 @@
 
 
 
-
+<%-- <%=request.getRealPath("/") %> --%>
 
 <tr>
 <td><label for="restaurant_Pic">매장사진</label></td>
@@ -125,9 +122,9 @@
 
 	<br/>
 
-	<input type="text" id="address" value=""  name="restaurant_Address" style="width:240px;" readonly/>
+	<input type="text" id="address" name="restaurant_Address" style="width:240px;" value="${restaurant_Address}" readonly/>
 
-	<input type="text" id="address_etc" value="" name="restaurant_Detail_Address" style="width:200px;"/>
+	<input type="text" id="address_etc" name="restaurant_Detail_Address" style="width:200px;" value="${restaurant_Detail_Address}"/>
 </td>
 </tr>
 

@@ -17,6 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{restaurant_Num},#{owner_name},#{owner_email},#{owner_password},#{owner_phonenumber},#{restaurant_Address},#{restaurant_detail_Address},#{owner_SecurityNum},#{restaurant_Name},#{owner_Join_Date})
 	</insert>
 
+    <insert id="insertRestaurantInfo" parameterType="dagachi.model.board.FranchiseMembershipDetailsDto">
+	insert into Restaurant_info (owner_num,restaurant_Num,restaurant_Name,owner_phonenumber,restaurant_Address,restaurant_detail_Address)
+	values( (select owner_num from Owner_SignUP where restaurant_Num = #{restaurant_Num}), #{restaurant_Num}, #{restaurant_Name}, #{owner_phonenumber},
+	#{restaurant_Address}, #{restaurant_detail_Address})
+	</insert>
+
 	<delete id="delete"
 		parameterType="dagachi.model.board.FranchiseNewlistDto">
 		delete from Owner_Waiting where restaurant_Num=#{restaurant_Num}

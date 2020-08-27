@@ -12,14 +12,11 @@
 <form method= "post" enctype="multipart/form-data">
 <table border="1" cellspacing="1" align="center">
 
-<tr>
-<td><label>가맹 번호</label></td>
-<td><input type="text" name="owner_Num" placeholder="${menuContent.owner_Num}"/></td>
-</tr>
 
 <tr>
 <td><label>메뉴 이름</label></td>
 <td><input type="text" name="menu_Name" placeholder="${menuContent.menu_Name}" /></td>
+<td><input type="hidden" name="owner_Num" value="${member.owner_num}"/></td>
 </tr>
 
 <tr>
