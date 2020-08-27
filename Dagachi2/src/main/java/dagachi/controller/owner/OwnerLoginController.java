@@ -31,17 +31,17 @@ public class OwnerLoginController {
 	OwnerLoginService service;
 	JavaMailSender mailSender;
 	
-	@RequestMapping(value = "/loginOwner", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginOwnerForm", method = RequestMethod.GET)
 	public String loginform() throws Exception {
 
 		return "owner/login";
 	}
-	@RequestMapping(value = "/findPassword", method = RequestMethod.GET)
+	@RequestMapping(value = "/findPasswordOwner", method = RequestMethod.GET)
 	public String findPassword(Model m) throws Exception {
 		return "owner/findPassword";
 	}
 	// 로그인
-	@PostMapping(value = "/loginOwner")
+	@RequestMapping(value = "/loginOwner")
 	public String login(OwnerLoginDto vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 
 		HttpSession session = req.getSession();
@@ -54,6 +54,7 @@ public class OwnerLoginController {
 			session.setAttribute("member", login);
 		}
 		return "redirect:/owner/loginOwner";
+
 	}
 
 	// 로그아웃
@@ -61,7 +62,7 @@ public class OwnerLoginController {
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 
-		return "owner/login";
+		return "owner/loginOwnerForm";
 	}
 
 	// mailSending 코드

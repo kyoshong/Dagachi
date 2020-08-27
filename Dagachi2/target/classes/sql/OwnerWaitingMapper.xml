@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       #{owner_SecurityNum},#{restaurant_Name},now(),#{restaurant_detail_Address})
    </insert>
 
+
 	<delete id="delete" parameterType="int">
 		delete from Owner_Waiting where restaurant_Num=#{restaurant_Num}
 	</delete>

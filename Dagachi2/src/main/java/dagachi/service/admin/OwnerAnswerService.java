@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dagachi.dao.admin.OwnerAnswerDao;
+import dagachi.dao.owner.OwnerAnswerDao;
 import dagachi.dto.OwnerAnswerDto;
 
 @Service

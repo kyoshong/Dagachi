@@ -67,7 +67,7 @@ input[type=submit]:hover {
 가맹 신청이 완료되었습니다.
 가맹 완료 까지 3일 정도 소요 될 수 있습니다.
 <br>
-<input type="button" value="홈으로" onclick="location.href='/index.jsp'">
+<input type="button" value="홈으로" onclick="location.href='../../index.jsp'">
 
 
 </body>

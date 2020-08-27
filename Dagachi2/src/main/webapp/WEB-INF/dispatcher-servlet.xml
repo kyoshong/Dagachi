@@ -58,6 +58,9 @@
 	<bean id="CustomerInfoDao"
 		class="dagachi.dao.customer.CustomerInfoDao"
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
+	<bean id="CustomerAnswerDao"
+		class="dagachi.dao.customer.CustomerAnswerDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
 	<bean id="CustomerOrderDao"
 		class="dagachi.dao.customer.CustomerOrderDao"
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
@@ -72,11 +75,14 @@
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
 	<bean id="OwnerLoginDao" class="dagachi.dao.owner.OwnerLoginDao"
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
+		
 
 	<bean class="dagachi.dao.admin.AdminReviewDao" id="adminReview"
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
 		
 	
+	<bean class="dagachi.dao.owner.OwnerAnswerDao" id="OwnerAnswerDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
 
    <bean id="sqlSession"
       class="org.mybatis.spring.SqlSessionTemplate">
@@ -159,11 +165,7 @@
 		</property>
 	</bean>
 	
-	<bean class="dagachi.dao.admin.CustomerAnswerDao" id="answerDao">
-		<property name="sqlSessionFactory">
-			<ref bean="sqlSessionFactory"/>
-		</property>
-	</bean>
+
 	
 	<bean class="dagachi.dao.owner.OwnerQuestionDao" id="OwnerQuestionDao">
 		<property name="sqlSessionFactory">
@@ -171,11 +173,7 @@
 		</property>
 	</bean>
 	
-	<bean class="dagachi.dao.admin.OwnerAnswerDao" id="OwnerAnswerDao">
-		<property name="sqlSessionFactory">
-			<ref bean="sqlSessionFactory"/>
-		</property>
-	</bean>
+
 	
 	<!-- 선하 -->
 </beans>

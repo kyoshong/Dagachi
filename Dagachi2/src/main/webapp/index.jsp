@@ -24,7 +24,9 @@
 사장입니까?
 <a href="owner/joinForm">회원 가입하기</a>
 <br>
-<a href="owner/loginOwner">owner login</a>
+
+<a href="owner/loginOwnerForm">owner login</a>
+
 <br><br>
 ------------------------------------------------------------------------
 현종이 입니다?

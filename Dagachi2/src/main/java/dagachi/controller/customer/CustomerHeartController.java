@@ -24,7 +24,7 @@ public class CustomerHeartController {
 	public String list(Model m) {
 		
 		List<CustomerHeartDto> list = null;
-		list = service.list(13);
+		list = service.list(1);
 
 		m.addAttribute("list", list);
 

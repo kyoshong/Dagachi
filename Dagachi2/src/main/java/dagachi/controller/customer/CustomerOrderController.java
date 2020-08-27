@@ -25,7 +25,7 @@ public class CustomerOrderController {
 	public String list(Model m) {
 		
 		List<CustomerOrderDto> list = null;
-		list = service.list(13);
+		list = service.list(1);
 
 		m.addAttribute("list", list);
 
@@ -37,7 +37,7 @@ public class CustomerOrderController {
 		System.out.println(reserv_num);
 		service.delete(reserv_num);
 		
-		return "redirect:/customer/orderList";
+		return "redirect: customer/orderList";
 	}
 	
 }
