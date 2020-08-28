@@ -2,8 +2,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/slicknav.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/flaticon.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/gijgo.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/animate.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/animated-headline.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/magnific-popup.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/themify-icons.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/slick.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/nice-select.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/assets/css/style.css">
+
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+
+
+
 
 	<script type="text/javascript">
 
@@ -163,32 +197,73 @@
   });
 </script>
 
-<!-- <script> /* 체크박스 */
-if ($('input[name=checkBoxDating]').is(":checked")) {
-    $('input[name=dating]').val('Y');
-} else {
-    $('input[name=dating]').val('N');
-}
 
-if ($('input[name=checkBoxGroup]').is(":checked")) {
-    $('input[name=groupReserv]').val('Y');
-} else {
-    $('input[name=groupReserv]').val('N');
-}
 
-if ($('input[name=checkBoxFriend]').is(":checked")) {
-    $('input[name=friend]').val('Y');
-} else {
-    $('input[name=friend]').val('N');
-}
+<script
+		src="<c:url value="../resources/assets/js/vendor/modernizr-3.5.0.min.js" />">
+		
+	</script>
+	<!-- Jquery, Popper, Bootstrap -->
+	<script
+		src="<c:url value="../resources/assets/js/vendor/jquery-1.12.4.min.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/popper.min.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/bootstrap.min.js" />"></script>
 
-if ($('input[name=checkBoxFamily]').is(":checked")) {
-    $('input[name=family]').val('Y');
-} else {
-    $('input[name=family]').val('N');
-}
+	<!-- Jquery Mobile Menu -->
 
-</script> -->
+	<script
+		src="<c:url value="../resources/assets/js/jquery.slicknav.min.js" />"></script>
+
+	<!-- Jquery Slick , Owl-Carousel Plugins -->
+
+	<script
+		src="<c:url value="../resources/assets/js/owl.carousel.min.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/slick.min.js" />">
+		
+	</script>
+	<!-- One Page, Animated-HeadLin -->
+	<script src="<c:url value="../resources/assets/js/wow.min.js" />"></script>
+	<script
+		src="<c:url value="../resources/assets/js/animated.headline.js" />"></script>
+	<script
+		src="<c:url value="../resources/assets/js/jquery.magnific-popup.js" />"></script>
+
+
+	<!-- Date Picker -->
+	<script src="<c:url value="../resources/assets/js/gijgo.min.js" />"></script>
+
+	<!-- Nice-select, sticky -->
+
+	<script
+		src="<c:url value="../resources/assets/js/jquery.nice-select.min.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/jquery.sticky.js" />">
+		
+	</script>
+
+	<!-- counter , waypoint -->
+	<script
+		src="<c:url value="../resources/assets/js/jquery.counterup.min.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/waypoints.min.js" />"></script>
+	<script
+		src="<c:url value="../resources/assets/js/jquery.countdown.min.js" />"></script>
+
+	<!-- contact js -->
+	<script src="<c:url value="../resources/assets/js/contact.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/jquery.form.js" />"></script>
+	<script
+		src="<c:url value="../resources/assets/js/jquery.validate.min.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/mail-script.js" />"></script>
+	<script
+		src="<c:url value="../resources/assets/js/jquery.ajaxchimp.min.js" />"></script>
+
+
+	<!-- Jquery Plugins, main Jquery -->
+
+	<script src="<c:url value="../resources/assets/js/plugins.js" />"></script>
+	<script src="<c:url value="../resources/assets/js/main.js" />">
+		
+	</script>
+
 
 
 </body>

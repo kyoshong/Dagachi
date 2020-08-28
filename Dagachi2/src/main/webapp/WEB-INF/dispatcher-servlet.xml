@@ -75,6 +75,8 @@
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
 	<bean id="OwnerLoginDao" class="dagachi.dao.owner.OwnerLoginDao"
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
+	<bean id="OwnerInfoChangeDao" class="dagachi.dao.owner.OwnerInfoChangeDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
 		
 
 	<bean class="dagachi.dao.admin.AdminReviewDao" id="adminReview"
