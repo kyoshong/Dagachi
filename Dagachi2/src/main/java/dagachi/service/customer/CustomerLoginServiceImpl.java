@@ -39,7 +39,10 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
 	@Override
 	public CustomerLoginDto login(CustomerLoginDto dto) throws Exception {
 		return dao.login(dto);
-
+	}
+	
+	public CustomerLoginDto idCheck(String customer_Email) throws Exception{
+		return dao.idCheck(customer_Email);
 	}
 
 	public int ID(String customer_Email) {
@@ -49,6 +52,7 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
 
 	public boolean emailCertification(HttpSession session, String customer_Email, int inputCode) {
 		try {
+			System.out.println("get"+"num" + customer_Email);
 			int generationCode = (int) session.getAttribute("num" + customer_Email);
 			System.out.println("입력한 코드  ::" + inputCode);
 			System.out.println("실제 코드 ::" + generationCode);
@@ -72,7 +76,7 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
 
 			// 일반 텍스트만 전송하려는 경우
 			msg.setText(email.getContent());
-			msg.setRecipient(RecipientType.TO, new InternetAddress(email.getReceiver()));
+			msg.setRecipient(RecipientType.TO, new InternetAddress(email.getTo()));
 
 			mailSender.send(msg);
 

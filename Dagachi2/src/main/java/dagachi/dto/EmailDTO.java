@@ -9,6 +9,6 @@ public class EmailDTO {
 	private String subject;
 	private String content;
 	private String date;
-	private String receiver;
+	private String to;
 	private int certiNum;
 }

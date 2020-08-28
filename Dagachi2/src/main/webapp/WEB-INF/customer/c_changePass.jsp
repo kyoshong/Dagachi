@@ -4,7 +4,7 @@
 <head>
 <title>내정보 보기</title>
 
-<script language="JavaScript">
+<script type="text/javascript">
 	function changePw() {
 		if (document.newPw.customer_password.value != document.newPw.customer_password2.value) {
 			alert("비밀번호가 다릅니다.");
@@ -25,10 +25,10 @@
 	<input type="hidden" id="customer_Email" name="customer_Email" value="${customer_Email}">
 		
 		<label>변경할 비밀번호</label>
-		<input type="password" name="customer_password" /><br /> 
+		<input type="password" name="customer_Password" /><br /> 
 		
 		<label>변경비밀번호	확인</label> 
-		<input type="password" name="customer_password2" /><br /> 
+		<input type="password" name="customer_Password2" /><br /> 
 		
 
 		<button type="submit">수정</button>

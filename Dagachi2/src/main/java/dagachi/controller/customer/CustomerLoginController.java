@@ -68,15 +68,111 @@ public class CustomerLoginController {
 	}
 
 	// 로그아웃
-	@GetMapping(value = "/customer/customer_logout")
+	@GetMapping(value = "customer/customer_logout")
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 
-		return "redirect:customer/c_login";
+		return "redirect:c_login";
+	}
+	
+	// 아이디 중복체크
+	@ResponseBody
+	@PostMapping(value="customer/idCheck")
+	public int postIdCheck(String customer_Email) throws Exception{
+		CustomerLoginDto idCheck = service.idCheck(customer_Email);
+		
+		int result = 0;
+		if(idCheck != null) {
+			result = 1;
+		}
+		return result;
+	}
+	
+	//mailSending 코드 회원가입시 인증
+	@ResponseBody
+	@RequestMapping(value = "customer/emailSend", method = { RequestMethod.GET, RequestMethod.POST })
+	public void mailSending1(HttpSession session, String customer_Email) throws IOException {
+		System.out.println("customer_Email = " + customer_Email);
+		EmailDTO email = new EmailDTO();
+
+		Random r = new Random();
+		int certiNum = r.nextInt(4589362) + 49311; // 이메일로 받는 인증코드 부분 (난수)
+		System.out.println(certiNum);
+		String to = customer_Email; // 받는 사람 이메일
+		String subject = "회원가입 인증 이메일 입니다."; // 제목
+		String content =
+
+				System.getProperty("line.separator") + // 한줄씩 줄간격을 두기위해 작성
+
+						System.getProperty("line.separator") +
+
+						"저희 홈페이지를 이용해 주셔서 감사합니다."
+
+						+ System.getProperty("line.separator") +
+
+						System.getProperty("line.separator") +
+
+						" 인증번호는 " + certiNum + " 입니다. "
+
+						+ System.getProperty("line.separator") +
+
+						System.getProperty("line.separator") +
+
+						"받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
+
+		email.setTo(to);
+		email.setSubject(subject);
+
+		email.setContent(content);
+		System.out.println("받는 이메일 :: " + to);
+		boolean result = service.mailSend(email);
+		System.out.println("결과 :: " + result);
+		System.out.println("set::"+"num" + customer_Email); 
+		session.setAttribute("num" + customer_Email, certiNum);
 	}
 
+	// 이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
+	// 내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
+	// 틀리면 다시 원래 페이지로 돌아오는 메소드
+	@ResponseBody
+	@RequestMapping(value = "customer/certification", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean join_certification1(HttpSession session, String inputCode, String customer_Email)
+			throws IOException {
+
+		System.out.println("입력한 인증번호 : " + inputCode);
+
+		boolean result = service.emailCertification(session, customer_Email, Integer.parseInt(inputCode));
+		System.out.println(result);
+		return result;
+	}
+
+	@RequestMapping(value = "/joinInfoForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String joinInfo(@RequestParam(value = "customer_Name") String customer_Name,
+			@RequestParam(value = "customer_Email") String customer_Email,
+			@RequestParam(value = "customer_Password") String customer_Password, Model m) throws Exception {
+		m.addAttribute("customer_Name", customer_Name);
+		m.addAttribute("customer_Email", customer_Email);
+		m.addAttribute("customer_Password", customer_Password);
+
+		return "customer/joinInfo";
+	}
+
+	@PostMapping(value = "/joinPost")
+	public ModelAndView joinPost(CustomerSignUpDto dto, HttpSession session) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("customer/joinPost");
+		service.insert(dto);
+
+		return mav;
+	}
+	
+	
+	
+	
 	// mailSending 코드 컨트롤러(비밀번호)
-	@RequestMapping(value = "/customer/findPass", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "customer/findPass", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mailSending(HttpServletRequest request, String customer_Email) throws IOException {
 		int num = 0;
 		try {
@@ -92,7 +188,7 @@ public class CustomerLoginController {
 			Random r = new Random();
 			int rdn = r.nextInt(4589362) + 49311; // 이메일로 받는 인증코드 부분 (난수)
 			System.out.println(rdn);
-			String receiver = customer_Email; // 받는 사람 이메일
+			String to = customer_Email; // 받는 사람 이메일
 			String subject = "비밀번호 찾기 이메일 입니다."; // 제목
 			String content =
 
@@ -114,12 +210,12 @@ public class CustomerLoginController {
 
 							"받으신 인증번호를 홈페이지에 입력하시면 새로운 비밀번호 설정이 가능합니다."; // 내용
 
-			email.setReceiver(receiver);
+			email.setTo(to);
 
 			email.setSubject(subject);
 
 			email.setContent(content);
-			System.out.println("받는 이메일 ::" + receiver);
+			System.out.println("받는 이메일 ::" + to);
 			boolean result = service.mailSend(email);
 			System.out.println("결과 ::" + result);
 
@@ -136,122 +232,42 @@ public class CustomerLoginController {
 	// 내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 	// 틀리면 다시 원래 페이지로 돌아오는 메소드
 	@ResponseBody
-	@RequestMapping(value = "/insertCode", method = { RequestMethod.GET, RequestMethod.POST })
-	public boolean join_certification(HttpServletRequest request, String inputCode, String customer_Email)
-			throws IOException {
+	@RequestMapping(value = "customer/insertCode", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean join_certification(HttpServletRequest request, String inputCode, 
+			String customer_Email) throws IOException {
 
 		System.out.println("입력한 인증번호 : " + inputCode);
 
 		HttpSession session = request.getSession();
-		boolean result = service.emailCertification(session, customer_Email, Integer.parseInt(inputCode));
+		boolean result = service.emailCertification(session, 
+				customer_Email, Integer.parseInt(inputCode));
 		System.out.println(result);
 		return result;
 
 	}
 
-	@RequestMapping(value = "/changePw", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "customer/changePw", method = { RequestMethod.GET, RequestMethod.POST })
 	public String joinInfo(@RequestParam(value = "customer_Email") String customer_Email, Model m) throws Exception {
 		m.addAttribute("customer_Email", customer_Email);
 
-		return "customer/changePass";
+		return "customer/c_changePass";
 	}
 
 	// 비밀번호 찾기 / 변경
-	@PostMapping("/newPw")
+	@PostMapping("customer/newPw")
 	public String updateMyinfo(Model model, String customer_Password, String customer_Email) throws Exception {
-
 		HashMap<String, Object> map = new HashMap<>();
-
+		
 		map.put("customer_Password", customer_Password);
 		map.put("customer_Email", customer_Email);
 		service.update(map);
 		return "customer/c_login";
 	}
-
-	//mailSending 코드 회원가입시 인증
-	@ResponseBody
-	@RequestMapping(value = "/emailSend", method = { RequestMethod.GET, RequestMethod.POST })
-	public void mailSending1(HttpServletRequest request, String customer_Email) throws IOException {
-		EmailDTO email = new EmailDTO();
-
-		Random r = new Random();
-		int certiNum = r.nextInt(4589362) + 49311; // 이메일로 받는 인증코드 부분 (난수)
-		System.out.println(certiNum);
-		String receiver = customer_Email; // 받는 사람 이메일
-		String subject = "회원가입 인증 이메일 입니다."; // 제목
-		String content =
-
-				System.getProperty("line.separator") + // 한줄씩 줄간격을 두기위해 작성
-
-						System.getProperty("line.separator") +
-
-						"저희 홈페이지를 이용해 주셔서 감사합니다."
-
-						+ System.getProperty("line.separator") +
-
-						System.getProperty("line.separator") +
-
-						" 인증번호는 " + certiNum + " 입니다. "
-
-						+ System.getProperty("line.separator") +
-
-						System.getProperty("line.separator") +
-
-						"받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
-		email.setReceiver(receiver);
-
-		email.setSubject(subject);
-
-		email.setContent(content);
-		System.out.println("받는 이메일 ::" + receiver);
-		boolean result = service.mailSend(email);
-		System.out.println("결과 ::" + result);
-
-		HttpSession session = request.getSession();
-		session.setAttribute("num" + customer_Email, certiNum);
-
-	}
-
-	// 이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
-	// 내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
-	// 틀리면 다시 원래 페이지로 돌아오는 메소드
-	@ResponseBody
-	@RequestMapping(value = "/certification", method = { RequestMethod.GET, RequestMethod.POST })
-	public boolean join_certification1(HttpServletRequest request, String inputCode, String customer_Email)
-			throws IOException {
-
-		System.out.println("입력한 인증번호 : " + inputCode);
-
-		HttpSession session = request.getSession();
-		boolean result = service.emailCertification(session, customer_Email, Integer.parseInt(inputCode));
-		System.out.println(result);
-		return result;
-
-	}
-
-	@RequestMapping(value = "/joinInfoForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String joinInfo(@RequestParam(value = "customer_name") String customer_name,
-			@RequestParam(value = "customer_Email") String customer_Email,
-			@RequestParam(value = "customer_password") String customer_password, Model m) throws Exception {
-		m.addAttribute("customer_name", customer_name);
-		m.addAttribute("customer_Email", customer_Email);
-		m.addAttribute("customer_password", customer_password);
-
-		return "customer/joinInfo";
-	}
-
-	@PostMapping(value = "/joinPost")
-	public ModelAndView joinPost(CustomerSignUpDto dto, HttpSession session) throws Exception {
-
-		ModelAndView mav = new ModelAndView();
-
-		mav.setViewName("customer/joinPost");
-		service.insert(dto);
-
-		return mav;
-	}
-
 }
+
+
+
+
 
 /*
  * @ResponseBody

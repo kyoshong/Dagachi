@@ -23,7 +23,8 @@ public class CustomerLoginDaoImpl implements CustomerLoginDao {
 	public void register(CustomerSignUpDto dto) throws Exception {
 		sql.insert(namespace + ".Cregister", dto);
 	}
-
+	
+	// 회원가입
 	public void insert(CustomerSignUpDto dto) throws Exception {
 		sql.insert(namespace + ".Cregister", dto);
 	}
@@ -34,16 +35,18 @@ public class CustomerLoginDaoImpl implements CustomerLoginDao {
 		return sql.selectOne(namespace + ".CLogin", dto);
 	}
 	
-	
+	//아이디 중복확인
+	public CustomerLoginDto idCheck(String customer_Email) throws Exception{
+		return sql.selectOne(namespace + ".idCheck" , customer_Email);
+	}
+
+	//비밀번호찾기
 	public int ID(String customer_Email) {
 		return sql.selectOne(namespace + ".findPass", customer_Email);
-		  
 	}
 
 	@Override
 	public void update(HashMap<String, Object> map) {
-		return;
+		sql.update(namespace + ".update", map);
 	}
-	
-
 }

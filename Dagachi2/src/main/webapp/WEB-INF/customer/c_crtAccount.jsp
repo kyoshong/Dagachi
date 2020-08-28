@@ -25,8 +25,7 @@ request.setAttribute("today", today);
 <html>
 <head>
 <title>고객 회원가입</title>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <style>
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
 	{
@@ -40,9 +39,26 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		<form method="post" action="c_crtAccount">
 			<div class="form-group has-feedback">
 				<label class="control-label" for="CuserId">아이디 : </label> <input
-					class="form-control" type="text" id="CuserId"
-					placeholder="이메일을 입력해 주세요" name="customer_Email" />
+					class="form-control" type="email" id="CuserId"
+					placeholder="이메일을 입력해 주세요" name="customer_Email" /><br>
+				<br>
+				<button type="button" class="idCheck">아이디 중복확인</button>
+				<button type="button" class="emailSend">이메일 인증</button>
 			</div>
+			<br>
+			<div class="result">
+				<div class="msg">아이디를 확인하세요.</div>
+			</div>
+			<br>
+
+			<tr>
+				<td>인증번호</td>
+				<td><input type="text" id="inputCode" name="inputCode" /></td>
+				<td><input type="hidden" id="certificationYN" name="certificationYN" value="false">
+				<button type="button" id="inputCodeButton" name="inputCodeButton">인증번호 확인</button></td>
+			</tr>
+
+			<br>
 			<br>
 			<div>
 				<label class="control-label" for="CinputCode"></label>
@@ -70,10 +86,10 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			</div>
 			<br>
 			<div class="form-group has-feedback">
-				<label class="control-label" for="CuserGender">성별 : </label> <input
-					class="form-control" type="radio" id="CgenderM" value="man"
+				<label class="control-label" for="CuserGender">성별 :</label> <input
+					class="form-control" type="radio" id="CgenderM" value="M"
 					name="customer_Gender" /> <label for="CgenderM">남자</label> <input
-					class="form-control" type="radio" id="CgenderW" value="woman"
+					class="form-control" type="radio" id="CgenderW" value="F"
 					name="customer_Gender" /> <label for="CgenderW">여자</label>
 			</div>
 			<br>
@@ -91,19 +107,12 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			</div>
 			<br> <input type="hidden" name="customer_Join_Date"
 				value="${today}" id="CuserJoin_Date" readonly />
-			<!-- 가입날짜 -->
-			<!-- <div>
-				<label for="userName">휴대폰 번호 인증 : </label> <input type="submit"
-				name="" />
-				</div> -->
-
 			<div class="form-group has-feedback">
 				<button class="btn btn-success" type="submit" id="submit">회원가입</button>
 				<button class="cencle btn btn-danger" type="button">취소</button>
 			</div>
 		</form>
 	</section>
-
 </body>
 
 <script type="text/javascript">
@@ -113,6 +122,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			location.href = "c_login";
 		})
 
+		//필수항목 입력 확인
 		$("#submit").on("click", function() {
 			if ($("#CuserId").val() == "") {
 				alert("아이디를 입력해주세요.");
@@ -146,6 +156,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			}
 		});
 	})
+	
+	//비밀번호 일치여부 확인
 	$(function() {
 		$("#alert-success").hide();
 		$("#alert-danger").hide();
@@ -166,37 +178,65 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		});
 	});
 
-	function emailSend() {
-		var customer_Email = $("#customer_Email").val();
+	//<button type="button" class="idCheck">아이디 중복확인</button>
+	//아이디 중복확인
+	$(".idCheck").click(function() {
+
+		var chk = {
+			"customer_Email" : $("#CuserId").val()
+		};
+		$.ajax({
+			url : "idCheck",
+			type : "post",
+			data : chk,
+			success : function(data) {
+				if (data == 1) {
+					$(".result .msg").text("이미 가입된 계정입니다.");
+					$(".result .msg").attr("style", "color:#f00");
+				} else {
+					$(".result .msg").text("사용 가능한 계정입니다.");
+					$(".result .msg").attr("style", "color:#00f");
+				}
+			}
+		});
+	});
+	
+	//<button type="button" class="emailSend">이메일 인증</button>
+	//이메일 인증
+	$(".emailSend").click(function() {
+
+		var customer_Email = $("#CuserId").val();
 		$.ajax({
 			url : "emailSend",
-			data : {
-				customer_Email : customer_Email
-			},
 			type : "POST",
+			data : {
+				"customer_Email" : customer_Email
+			},//?
 			success : function(data) {
 				console.log(data);
 				alert("이메일로 인증번호가 발송 되었습니다.")
 				return false;
 			},
 			error : function() {
-
+				console.log(data);
 				alert("다시 시도하세요")
 				return false;
 			}
 		});
-	}
-	function emailCertification() {
+	});
+
+	//이메일 인증 확인
+	$("#inputCodeButton").click(function() {
 		var fal = "false";
 		var tr = "true";
 
-		var customer_Email = $("#customer_Email").val();
+		var customer_Email = $("#CuserId").val();
 		var inputCode = $("#inputCode").val();
 		$.ajax({
 			url : "certification",
 			data : {
-				customer_Email : customer_Email,
-				inputCode : inputCode
+				"customer_Email" : customer_Email,
+				"inputCode" : inputCode
 			},
 			type : "POST",
 			success : function(result) {
@@ -208,13 +248,12 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 						$('input[name=certificationYN]').attr('value', fal);
 					}
 					return false;
-				}
-			},
-			error : function() {
-				alert("인증번호가 일치하지않습니다, 인증번호를 다시 입력해주세요.");
-				return false;
+				}else{
+					alert("인증번호가 일치하지않습니다, 인증번호를 다시 입력해주세요.");
+					return false;
+					}
 			}
 		});
-	}
+	});
 </script>
 </html>

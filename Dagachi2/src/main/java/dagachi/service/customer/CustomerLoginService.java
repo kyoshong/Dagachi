@@ -15,6 +15,8 @@ public interface CustomerLoginService {
 	public void insert(CustomerSignUpDto dto) throws Exception;
 
 	public CustomerLoginDto login(CustomerLoginDto dto) throws Exception;
+	
+	public CustomerLoginDto idCheck(String customer_Email)throws Exception;
 
 	public int ID(String customer_Email);
 
