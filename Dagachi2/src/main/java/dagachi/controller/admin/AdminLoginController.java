@@ -59,11 +59,11 @@ public class AdminLoginController {
 	}
 
 	// 로그아웃
-	@GetMapping(value = "/admin/admin_logout")
+	@GetMapping(value = "admin/admin_logout")
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 
-		return "redirect:admin/a_login";
+		return "redirect:a_login";
 	}
 
 }

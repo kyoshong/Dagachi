@@ -24,5 +24,5 @@ public class CustomerOrderDto {
    private String restaurant_pic;
    private String owner_phonenumber;
    private Time time_of_use;
-
+	
 }

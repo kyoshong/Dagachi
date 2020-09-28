@@ -24,11 +24,22 @@
 		and customer_Password = #{customer_Password}
 	</select>
 	
+	<select id="idCheck" resultType="dagachi.dto.CustomerLoginDto">
+		select customer_Email from customer_signup 
+		where customer_Email = #{customer_Email}
+	</select>
+	
 	<select id="findPass" parameterType="String" resultType="int">
 		select count(*) from customer_SignUp
 		where customer_Email=#{customer_Email}
 	</select>
 	
+	<update id="update" parameterType="hashMap">
+		update customer_SignUp set
+		customer_Password =
+		#{customer_Password} where customer_Email =
+		#{customer_Email}
+	</update>
 	<!-- <select id="CidChk" resultType="dagachi.dto.customer.CSignUpDTO"> select 
 		customer_Email from customer_signup where customer_Email = #{customer_Email} 
 		</select> -->

@@ -22,7 +22,14 @@
 					</td>
 					<td>${list.owner_Name}</td>
 					<td>${list.date_Created}</td>
-					<td>${list.owner_Num}</td>
+					<td><c:choose>
+							<c:when test="${article.isAnswered == false}">
+        						답변대기
+    						</c:when>
+							<c:when test="${article.isAnswered == true}">
+							 	답변완료
+						    </c:when>
+						</c:choose></td>
 				</tr>
 			</c:forEach>
 		<tr>

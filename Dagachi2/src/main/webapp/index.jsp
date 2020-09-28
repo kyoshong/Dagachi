@@ -24,7 +24,9 @@
 사장입니까?
 <a href="owner/joinForm">회원 가입하기</a>
 <br>
-<a href="owner/loginOwner">owner login</a>
+
+<a href="owner/loginOwnerForm">owner login</a>
+
 <br><br>
 ------------------------------------------------------------------------
 현종이 입니다?
@@ -49,7 +51,7 @@
 <a href="board/a_adminAccountList">관리자 목록</a> <br/>
 <a href="board/c_main">메인페이지</a>
 <br><br>
--------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 용환입니다
 <div align="left">
 		<a href="board/a_ownerReceiptList">가맹대기</a> <br>
@@ -67,6 +69,7 @@
 <a href="menuManagement/menuList">메뉴관리</a><br>
 <a href="er/reservationForm">예약페이지 폼</a><br>
 <a href="reservationStastics/timeChart">예약현황분석</a><br>
+<a href="owner/ownerInfoChange">내 정보 수정(사장)</a><br>
 
 
 

@@ -1,3 +1,7 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/java/dagachi/board/controller/hjController/AdminMembershipDetailsController.java=UTF-8
+=======
+encoding//src/main/webapp/start.jsp=UTF-8
+>>>>>>> 7ab148780a70451ffd351f036b57280d58c39cf1
 encoding/<project>=UTF-8

@@ -58,17 +58,17 @@ $(function() {$("button[name^='reserv_num']").on("click", function del() {
 <input type="hidden" value="${list.reserv_num}" name=reserv_num id="reserv_num">
 		<tr>
 			<td align="center" width="100"> <a href="test"><img
-				src="../${list.restaurant_Pic}" width="100" height="100"> </a></td>
-			 <td  align="center"><a href="test" > ${list.restaurant_Name}</a></td>
+				src="../${list.restaurant_pic}" width="100" height="100"> </a></td>
+			 <td  align="center"><a href="test" > ${list.restaurant_name}</a></td>
 			 <td  align="center"><a href="test">  <fmt:formatDate value="${list.date_of_use}" pattern="yyyy.MM.dd"/></a></td>
 			  <td  align="center"><a href="test"> ${list.time_of_use}</a></td>
-			 <td  align="center"><a href="test"> ${list.reserv_Fee}</a></td>
-			 <td  align="center"><a href="test"> ${list.owner_phonenumber} //예약 번호 ${list.reserv_num}</a></td>
-			 <td align="center"><a href="test"> ${list.reserv_Confirm}</a></td>
+			 <td  align="center"><a href="test"> ${list.reserv_fee}</a></td>
+			 <td  align="center"><a href="test"> ${list.customer_phoneNumber} //예약 번호 ${list.reserv_num}</a></td>
+			 <td align="center"><a href="test"> ${list.reserv_confirm}</a></td>
 			 <td align="center" > 
 			 <button type="button" id="reserv_num${list.reserv_num}"  
 			 name="reserv_num${list.reserv_num}" value="${list.reserv_num}"
-			 <c:if test="${list.reserv_Confirm eq '확정'}">hidden</c:if>>예약취소</button></td>
+			 <c:if test="${list.reserv_confirm eq '확정'}">hidden</c:if>>예약취소</button></td>
 	</tr>
 	
 	</c:forEach>

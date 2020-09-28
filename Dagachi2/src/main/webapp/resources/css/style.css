@@ -20,7 +20,6 @@ body {
 	height: 100%;
 }
 
-
 /*
 ========
 2. Header / Menu
@@ -53,6 +52,10 @@ Owner page
   justify-content: center;
   -ms-flex-align: center;
 	align-items: center
+}
+
+.comu-box{
+ 
 }
 
 .scheduler-container .datepicker.datepicker-inline {

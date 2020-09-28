@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Administrator
+=======
+Built-By: HURMMING
+>>>>>>> 7ab148780a70451ffd351f036b57280d58c39cf1
 Build-Jdk: 1.8.0_251
 Created-By: Maven Integration for Eclipse
 

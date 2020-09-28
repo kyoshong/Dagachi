@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,6 @@
 			<br>
 			<div class="form-group has-feedback">
 				<button class="btn btn-success" type="submit" id="login">로그인</button>
-				<button class="btn btn-success" type="submit" id="logout">로그아웃</button>
 			</div>
 			<div class="form-group has-feedback">
 				<p>
@@ -34,11 +34,15 @@
 			</div>
 		</form>
 	</c:if>
-	<c:if test="${msg == false}">
-		<p style="color: #f00;">로그인에 실패했습니다. 아이디 또는 패스워드를 다시 입력해주십시오.</p>
-	</c:if>
 	<c:if test="${member != null}">
 		<p>${member.admin_Name}님 환영합니다.</p>
+		
+		<a href="admin_logout">로그아웃</a>
+		
+		<a href="/dagachi/index_YHJ.jsp">홈</a>
+	</c:if>
+	<c:if test="${msg == false}">
+		<p style="color: #f00;">로그인에 실패했습니다. 아이디 또는 패스워드를 다시 입력해주십시오.</p>
 	</c:if>
 </body>
 <script type="text/javascript">

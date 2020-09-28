@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import dagachi.dao.admin.AdminLoginDao;
 import dagachi.dto.AdminLoginDto;
 import dagachi.dto.AdminSignUpDto;
-import lombok.Setter;
 
 @Service
 public class AdminLoginServiceImpl implements AdminLoginService {

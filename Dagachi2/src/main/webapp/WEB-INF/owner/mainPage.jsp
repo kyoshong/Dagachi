@@ -65,8 +65,8 @@
 									<c:forEach items="${customerOrderList}" var="customerOrder">
 									<tr>
 										<td>
-											<!-- <img src="${customerOrder.restaurant_Pic}" class="img-thumbnail"> -->
-											${customerOrder.customer_Name}
+										 <img src="${customerOrder.restaurant_pic}" class="img-thumbnail"> 
+											${customerOrder.customer_num}
 										</td>
 										<td>${customerOrder.number_of_people}</td>
 										<td>${customerOrder.customer_phoneNumber}</td>

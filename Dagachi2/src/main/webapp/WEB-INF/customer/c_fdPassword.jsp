@@ -12,7 +12,7 @@
 			<tr>
 				<td>E-Mail</td>
 				<td><input type="email" id="customer_Email" name="customer_Email" /></td>
-				<td><button type="button" name="send" onclick="emailReceive()">인증번호
+				<td><button type="button" name="send" class="emailReceive">인증번호
 						받기</button></td>
 			<tr>
 				<td>인증번호</td>
@@ -32,13 +32,28 @@
 	</form>
 </body>
 <script type="text/javascript">
-	function emailReceive() {
-		var customer_Email = $("#customer_Email").val();
-		if(customer_Email == ){
 
-		}else( == ){
-		}
-	}
+	$(".emailReceive").click(function() {
+		
+		var customer_Email = $("#customer_Email").val();
+		$.ajax({
+			url : "findPass",
+			type : "POST",
+			data : {"customer_Email" : customer_Email},
+			success : function(data){
+				
+				console.log(data);
+				alert("해당 이메일로 인증번호가 발송 되었습니다.")
+				return false;
+				
+			},
+			error : function() {
+				alert("다시 시도하세요")
+				return false;
+			}
+		});
+	});
+	
 	function insertCode() {
 		var fal = "false";
 		var tr = "true";
@@ -60,6 +75,9 @@
 						$('input[name=certificationYN]').attr('value', fal);
 					}
 					return false;
+				}else{
+					alert("인증번호가 일치하지않습니다, 인증번호를 다시 입력해주세요.");
+					return false;
 				}
 			},
 			error : function() {
@@ -68,6 +86,7 @@
 			}
 		});
 	}
+	
 	function emailCertification() {
 		if ($("#certificationYN").val() == "false") {
 			alert("이메일 인증을 해주세요");
