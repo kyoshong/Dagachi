@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customerRestaurantSearch">
+
+	<select id="customerRestaurantList" resultType="dagachi.dto.CustomerRestaurantSearchDto">
+		select * from Restaurant_info
+	</select>
+
+	<select id="customerRestaurantDetailList" resultType="dagachi.dto.CustomerRestaurantSearchDto">
+		select * from Restaurant_info where owner_Num=#{owner_Num}
+	</select>
+	
+	<select id="searchRestaurantInfo"
+		resultType="dagachi.dto.CustomerRestaurantSearchDto">
+		select restaurant_Pic from Restaurant_info where restaurant_Address or
+		restaurant_Detail_Address;
+	</select>
+	
+	<select id="one"
+		resultType="dagachi.dto.CustomerRestaurantSearchDto"
+		parameterType="string">
+		select * from Restaurant_info where restaurant_Num =
+		#{restaurant_Num}
+	</select>
+
+	<select id="max" resultType="int">
+		select max(restaurant_Num) from
+		Restaurant_info
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from Restaurant_info
+	</select>
+	
+	<select id="list" parameterType="map"
+		resultType="dagachi.dto.CustomerRestaurantSearchDto">
+		select * from Restaurant_info 
+		order by restaurant_Name
+	</select>
+	
+	<select id="restaurantCount" resultType="int">
+		select count(*) from Restaurant_info
+		<include refid="listAll"></include>
+	</select>
+	
+	<select id="restaurantList" parameterType="map"
+		resultType="dagachi.dto.CustomerRestaurantSearchDto">
+		select restaurant_Name, restaurant_Pic from Restaurant_info 
+		<include refid="listAll"></include>
+		order by restaurant_Name
+	</select>
+	
+	<sql id="listAll">
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		 restaurant_Address like CONCAT('%', #{searchType}, '%') 
+			AND restaurant_Sector like CONCAT('%', #{searchType2}, '%')
+		 	
+			<if
+				test="keyword != null and keyword != '' ">
+				AND restaurant_Address like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+			<if test="select_chk == 'dating'">
+				AND dating='Y'
+			</if>
+			<if test="select_chk == 'groupReserv'">
+				AND groupReserv='Y'
+			</if>
+			<if test="select_chk == 'family'">
+				AND family='Y'
+			</if>
+			<if test="select_chk == 'friend'">
+				AND friend='Y'
+			</if>
+			<if test="select_chk == 'playGround'">
+				AND playGround='Y'
+			</if>
+			<if test="select_chk == 'parking_Lot'">
+				AND parking_Lot='Y'
+			</if>
+			AND capacity=${range}
+			
+		</trim>
+	</sql>
+		
+</mapper>

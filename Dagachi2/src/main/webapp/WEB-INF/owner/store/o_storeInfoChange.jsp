@@ -35,7 +35,7 @@
 <title>매장 정보 수정</title>
 </head>
 <body>
-
+<a href="/index.jsp">홈으로</a>
 <form enctype="multipart/form-data" method="post">
 <table>
 
@@ -72,12 +72,12 @@
 
 <tr>
 <td><label>시간대</label></td>
-<td><input type="text" name="opening_Hours"/></td>
+<td><input type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="opening_Hours"/></td>
 </tr>
 
 <tr>
 <td><label>수용 인원</label></td>
-<td><input type="text" name="capacity"/></td>
+<td><input type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="capacity" /></td>
 </tr>
 
 <tr>

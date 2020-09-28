@@ -54,6 +54,7 @@
 <div align="left">
 		<a href="board/a_ownerReceiptList">가맹대기</a> <br>
 		<a href="board/a_ownerDetailInfoList">가맹정보</a> <br>
+		<a href="customer/c_searchRestaurant">음식점 상세검색</a>
 	</div><br><br>
 ---------------------------------------------------------------
 	한기입니다.
@@ -64,7 +65,7 @@
 <a href="reviewOwner/reviewOwnerList?num=1">사장님 리뷰 게시판</a><br>
 <a href="storeManagement/storeInfoChangeForm">매장정보수정</a><br>
 <a href="menuManagement/menuList">메뉴관리</a><br>
-<a href="reservationCustomer/reservationForm">예약페이지 폼</a><br>
+<a href="er/reservationForm">예약페이지 폼</a><br>
 <a href="reservationStastics/timeChart">예약현황분석</a><br>
 
 
@@ -80,6 +81,6 @@
 
 </ul>
 
--0826
+-0928
 </body>
 </html>  

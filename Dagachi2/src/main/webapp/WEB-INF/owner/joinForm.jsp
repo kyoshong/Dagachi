@@ -185,6 +185,7 @@ input[type=submit]:hover {
 		</tr>
 	</table>
 </form>
-
+<a href="/index.jsp">홈</a>
 </body>
+
 </html>

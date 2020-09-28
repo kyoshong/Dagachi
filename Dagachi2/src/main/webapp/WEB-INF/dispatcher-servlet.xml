@@ -75,7 +75,6 @@
 
 	<bean class="dagachi.dao.admin.AdminReviewDao" id="adminReview"
 		p:sqlSessionFactory-ref="sqlSessionFactory" />
-		
 	
 
    <bean id="sqlSession"
@@ -101,9 +100,14 @@
 		</property> </bean> -->
 
 
-	<bean id="dao2" class="dagachi.dao.board.FranchiseNewlistDaoImpl" p:sqlSessionFactory-ref="sqlSessionFactory" />
-	<bean id="dao1"	class="dagachi.dao.board.FranchiseMembershipDetailsDaoImpl"  p:sqlSessionFactory-ref="sqlSessionFactory" />
-
+	<bean id="dao2" class="dagachi.dao.board.FranchiseNewlistDaoImpl"
+	 p:sqlSessionFactory-ref="sqlSessionFactory" />
+	<bean id="dao1"	class="dagachi.dao.board.FranchiseMembershipDetailsDaoImpl" 
+	 p:sqlSessionFactory-ref="sqlSessionFactory" />
+	<bean  id="CustomerRestaurantSearch" class="dagachi.dao.customer.CustomerRestaurantSearchDaoImpl"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
+	<bean id="CustomerRestaurantInfoDao" class="dagachi.dao.customer.CustomerRestaurantInfoDaoImpl" 
+		 p:sqlSessionFactory-ref="sqlSessionFactory" />
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
@@ -127,7 +131,7 @@
 	
 	<!-- 업로드 패스 설정 --> 
 <bean class="java.lang.String" id="uploadPath">
- <constructor-arg value="C:/Users/Hkkkkkk21/git_local_repository/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Dagachi2/resources/" />
+ <constructor-arg value="D:/git_re/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Dagachi2/resources/" />
 </bean> <!-- <%=request.getRealPath("/") %> -->
 
 <!-- 일반 파일 업로드 경로 -->

@@ -8,11 +8,159 @@
 <head>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <title>신규 가맹 접수(전체 글:${a_ownerReceiptList.count})</title>
+<style>
+
+nav#menu_wrap{
+	position: relative;
+	width: 1100px;
+	height: 50px;
+	border: 1px solid black;
+	margin: 0 auto;
+}
+
+
+.zeta-menu-bar {
+	margin: 0 auto;
+	background: white;
+	display: inline-block;
+	width: 100%;
+}
+.zeta-menu { margin: 0; padding: 0; }
+.zeta-menu li {
+  float: left;
+  list-style:none;
+  position: relative;
+}
+.zeta-menu li:hover { background: #ddd; }
+.zeta-menu li#logo_Emb:hover { background: white; }
+.zeta-menu li:hover>a { color:black; }
+.zeta-menu a {
+  color: black;
+  font-size: 20px;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.zeta-menu ul {
+  background: #eee;
+  border: 1px solid black;
+  display: none;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 180px;
+  z-index:100;
+}
+
+.zeta-menu ul li { float: none; }
+.zeta-menu ul li:hover { background: #ddd; }
+.zeta-menu ul li:hover a { color: black; }
+.zeta-menu ul a { color: black; }
+.zeta-menu ul ul { left: 100%; top: 0; }
+.zeta-menu ul ul li {float:left; margin-right:10px;}
+
+li#logo_Emb{
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin: 0;
+}
+#logo_Emb{
+	width: 100px;
+	height: 50px;
+}
+a#logo_Emb{
+	padding: 0px;
+}
+#down_menu{
+	font-size: 15px;
+}
+
+div#boardForm_content{
+	width: 1100px;
+	height: 400px;
+	border: 1px solid black;
+	margin: 0 auto;
+	margin-top: 50px;
+	
+}
+div#boardForm_title{
+	width: 218px;
+	position: relative;
+	margin-left: 50px;
+	margin-top: -15px;
+	font-size: 24px;
+	background: white;
+	z-index:10;
+}
+form#boardForm{
+	margin-top: 30px; 
+}
+
+</style>
+
+<script src="<c:url value="http://code.jquery.com/jquery-3.5.1.min.js" />" ></script> 
+<!-- 메뉴바 -->
+<script>
+        $(function() {
+            $(document).mouseup(function(e) {
+                if ($(e.target).parents('.zeta-menu').length == 0) {
+                    $('.zeta-menu li').removeClass('expand');
+                    $('.zeta-menu ul').hide();
+                }
+            });
+            $(".zeta-menu>li:has(ul)>a").each(function() {
+                $(this).html($(this).html());
+            });
+            $(".zeta-menu ul li:has(ul)")
+                .find("a:first")
+                .append("<p style='float:right;margin:-3px'>&#9656;</p>");
+ 
+            $(".zeta-menu li>a").click(function() {
+                var li = $(this).parent();
+                var ul = li.parent()
+                ul.find('li').removeClass('expand');
+                ul.find('ul').not(li.find('ul')).hide();
+                li.children('ul').toggle();
+                if (li.children('ul').is(':visible') || li.has('ul')) {
+                    li.addClass('expand');
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-<div align="center"><a href="a_ownerReceiptList">가맹대기</a>
-<a href="a_ownerDetailInfoList">가맹정보</a></div><br>
+
+<div align="center"></div><br>
+	<nav id="menu_wrap">
+			<div class='zeta-menu-bar'>
+			  <ul class="zeta-menu">
+			    <%-- <li><a id="logo_Emb" onclick="window.location.reload()"><img  id="logo_Emb" src="<%=request.getContextPath()%>/resources/images/logo_Emb_White_Mini.jpg" ></a></li> --%>
+			    <li><a id="logo_Emb" href="/index.jsp"><img  id="logo_Emb" src="<%=request.getContextPath()%>/resources/images/logo_Emb_White_Mini.jpg" ></a></li>
+			    <li><a href="#0">회원관리</a>
+			    	<ul>
+			    	<li><a id="down_menu" href="#0A">회원 문의사항</a></li>
+                    <li><a id="down_menu" href="#0B">회원 정보</a></li>  
+                    <li><a id="down_menu" href="#0C">회원 리뷰</a></li>  
+                    </ul>
+			    <li><a href="#1">가맹점관리</a>
+			    	<ul>
+			    	<li><a id="down_menu" href="a_ownerReceiptList">신규 가맹 접수 확인</a></li>
+                    <li><a id="down_menu" href="a_ownerDetailInfoList">가맹 상세 정보</a></li>  
+                    <li><a id="down_menu" href="#1C">가맹 문의 사항 목록</a></li>  
+                    </ul>
+			    <li><a href="#2">관리자정보</a>
+			    	<ul>
+			    	<li><a id="down_menu" href="#2A">공지사항 관리</a></li>
+                    <li><a id="down_menu" href="#2B">관리자 계정 관리</a></li>  
+                    </ul>
+                 </ul>
+			</div>
+			</nav>
 <%-- <% request.setCharacterEncoding("UTF-8"); %> --%>
+	<div id="boardForm_content">
+		<div id="boardForm_title">신규 가맹 접수 확인</div>
 	<form id="boardForm" name="boardForm" method="post">
 		<table width="1000" border="1" cellspacing="0" cellpadding="0"
 			align="center">
@@ -70,6 +218,6 @@
 				</c:if>
 			</div>
 	</form>
-
+	</div>
 </body>
 </html>

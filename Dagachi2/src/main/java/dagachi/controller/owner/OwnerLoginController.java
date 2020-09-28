@@ -56,6 +56,8 @@ public class OwnerLoginController {
 		return "redirect:/owner/loginOwner";
 	}
 
+	
+	
 	// 로그아웃
 	@GetMapping(value = "/logoutOwner")
 	public String logout(HttpSession session) throws Exception {

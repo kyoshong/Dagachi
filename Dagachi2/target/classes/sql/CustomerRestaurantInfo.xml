@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customerRestaurantInfo">
+	
+	<select id="customerRestaurantDetailList" parameterType="int" resultType="dagachi.dto.MenuDto">
+		select * from Menu where owner_Num=#{owner_Num}
+	</select>
+	
+	<select id="customerRestaurantMenu" resultType="dagachi.dto.MenuDto">
+		select * from Menu where owner_Num=#{owner_Num}
+	</select>
+		
+</mapper>

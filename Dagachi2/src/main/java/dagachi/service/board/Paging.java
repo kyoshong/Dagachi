@@ -1,10 +1,22 @@
 package dagachi.service.board;
 
+import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Paging {
 
 	int beginPageNumber;
 	int endPageNumber;
-	int totalPageCount;
+	public int totalPageCount;
+	private String searchType;
+	private String searchType2;
+	private String keyword;
+	String select_chk;
+	int range;
 	
 	public Paging() {}
 	
@@ -30,18 +42,6 @@ public class Paging {
 		}
 		return new Paging(beginNumber, endNumber, pageCount);
 		
-	}
-
-	public int getBeginPageNumber() {
-		return beginPageNumber;
-	}
-
-	public int getEndPageNumber() {
-		return endPageNumber;
-	}
-
-	public int getTotalPageCount() {
-		return totalPageCount;
 	}
 		
 }
